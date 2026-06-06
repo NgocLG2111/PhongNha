@@ -1335,7 +1335,7 @@
       grid-row: 5;
     }
 
-    .order-card > .button {
+    .order-card>.button {
       grid-column: 1;
       grid-row: 4;
       width: 100%;
@@ -1742,7 +1742,7 @@
       .order-note,
       .cart-total,
       .order-error,
-      .order-card > .button {
+      .order-card>.button {
         grid-column: 1;
         grid-row: auto;
       }
@@ -2067,13 +2067,15 @@
           </div>
           <div class="menu-content">
             <div class="menu-list" id="menuList" aria-live="polite"></div>
-            <aside class="order-card" id="orderCard" role="dialog" aria-label="Vaša objednávka" aria-modal="false" aria-hidden="true">
+            <aside class="order-card" id="orderCard" role="dialog" aria-label="Vaša objednávka" aria-modal="false"
+              aria-hidden="true">
               <div class="order-card-head">
                 <h3>Vaša objednávka</h3>
                 <button class="cart-close" id="closeCartSheet" type="button" aria-label="Zavrieť objednávku">×</button>
               </div>
               <div class="cart-list" id="cartList">Zatiaľ nemáte vybrané žiadne jedlo.</div>
-              <textarea class="order-note" id="orderNote" placeholder="Poznámka k objednávke" aria-label="Poznámka k objednávke"></textarea>
+              <textarea class="order-note" id="orderNote" placeholder="Poznámka k objednávke"
+                aria-label="Poznámka k objednávke"></textarea>
               <div class="cart-total" id="cartTotal"><span>Spolu</span><strong>0,00 €</strong></div>
               <p class="order-error" id="orderError" aria-live="polite"></p>
               <button class="button button-primary" id="sendWhatsAppOrder" type="button">Objednať cez WhatsApp</button>

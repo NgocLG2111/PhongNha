@@ -24,7 +24,8 @@ assets/images/menu/lunch-menu_category_pondelok-teple-jedla.webp
 
 Full list:
 
-```textlunch-menu_category_all.webp
+```text
+lunch-menu_category_all.webp
 lunch-menu_category_piatok-polievky.webp
 lunch-menu_category_piatok-sushi.webp
 lunch-menu_category_piatok-teple-jedla.webp
