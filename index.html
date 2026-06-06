@@ -2482,7 +2482,122 @@
       { id: "main-poke-bowls-tofu", name: "Tofu Bowls", description: "Ryza sushi, wakame, edamame, zavor, mango, uhorka, avokado, salat mix, paradajky, sezam, mango omacka, teriaky omacka, bolws omacka.", price: "9,00 €", category: "POKE BOWLS", allergens: [], menu_type: "main_menu" },
       { id: "main-poke-bowls-hovadzie", name: "Hovädzie Bowls", description: "Ryza sushi, wakame, edamame, zavor, mango, uhorka, avokado, salat mix, paradajky, sezam, mango omacka, teriaky omacka, bolws omacka.", price: "10,00 €", category: "POKE BOWLS", allergens: [], menu_type: "main_menu" }
     ];
+    function escapeHtml(value) {
+      return String(value || "")
+        .replace(/&/g, "\x26amp;")
+        .replace(/</g, "\x26lt;")
+        .replace(/>/g, "\x26gt;")
+        .replace(/"/g, "\x26quot;")
+        .replace(/'/g, "\x26#039;");
+    }
 
+    const spellingFixes = [
+      ["POKE BOLWS", "POKE BOWLS"],
+      ["Poke Bolws", "Poke Bowls"],
+      ["poke bolws", "poke bowls"],
+      ["bolws omáčka", "bowls omáčka"],
+      ["Bolws omáčka", "Bowls omáčka"],
+
+      ["teriaky", "teriyaki"],
+      ["teryaki", "teriyaki"],
+      ["Teryaki", "Teriyaki"],
+      ["teiyaki", "teriyaki"],
+
+      ["majoneza", "majonéza"],
+      ["majonez", "majonéza"],
+      ["majozeza", "majonéza"],
+      ["majneza", "majonéza"],
+      ["maionejo", "majonéza"],
+      ["japan majonéza", "japonská majonéza"],
+
+      ["avokado", "avokádo"],
+      ["Avokado", "Avokádo"],
+      ["avocoado", "avokádo"],
+
+      ["Ryza", "Ryža"],
+      ["ryza", "ryža"],
+      ["zavor", "zázvor"],
+      ["salatmix", "šalát mix"],
+      ["salat mix", "šalát mix"],
+      ["ladovy salát", "ľadový šalát"],
+      ["ladový salát", "ľadový šalát"],
+
+      ["vyprazané", "vyprážané"],
+      ["vyprázané", "vyprážané"],
+      ["vybrazane", "vyprážané"],
+      ["Vyprázané", "Vyprážané"],
+      ["Vyprazané", "Vyprážané"],
+
+      ["Kacacie", "Kačacie"],
+      ["kacacie", "kačacie"],
+      ["Krevetove", "Krevetové"],
+      ["krevetove", "krevetové"],
+      ["Hovadzie", "Hovädzie"],
+      ["hovadzie", "hovädzie"],
+      ["flambovany", "flambovaný"],
+      ["Flambovany", "Flambovaný"],
+
+      ["kuracímäsom", "kuracím mäsom"],
+      ["kuracie maso", "kuracie mäso"],
+      ["Kuracie maso", "Kuracie mäso"],
+      ["hovädzie mäso(beef)", "hovädzie mäso (beef)"],
+
+      ["psenicne", "pšeničné"],
+      ["Psenicne", "Pšeničné"],
+      ["vajicko", "vajíčko"],
+      ["cili", "chilli"],
+
+      ["omacka", "omáčka"],
+      ["Omacka", "omáčka"],
+
+      ["kkreveta", "kreveta"],
+      ["slamon", "salmon"],
+      ["philadelphiaa cheese", "philadelphia cheese"],
+
+      ["Specia roll", "Special roll"],
+      ["Futomaki tempural roll", "Futomaki tempura roll"],
+
+      ["brololica", "brokolica"],
+      ["na zelenina", "na zelenine"],
+      ["grilované zelenina", "grilovanej zelenine"],
+      ["špatgľa", "špargľa"],
+
+      ["MeDové Kúsky", "Medové kúsky"]
+    ];
+
+    function displayText(value) {
+      if (typeof value !== "string") return value;
+
+      let result = value;
+
+      spellingFixes.forEach(([wrong, right]) => {
+        result = result.split(wrong).join(right);
+      });
+
+      result = result
+        .replace(/\s+,/g, ",")
+        .replace(/,\s*/g, ", ")
+        .replace(/\s+\./g, ".")
+        .replace(/\s{2,}/g, " ")
+        .replace(/Príloha\s*:\s*/gi, "Príloha: ")
+        .replace(/0,\s*2l/g, "0,2l")
+        .replace(/0,\s*3l/g, "0,3l")
+        .replace(/0,\s*4l/g, "0,4l")
+        .replace(/5ks/g, "5 ks")
+        .replace(/6ks/g, "6 ks")
+        .replace(/8ks/g, "8 ks")
+        .replace(/14ks/g, "14 ks")
+        .replace(/16ks/g, "16 ks")
+        .replace(/18ks/g, "18 ks")
+        .replace(/24ks/g, "24 ks")
+        .trim();
+
+      return result;
+    }
+
+    function safeDisplay(value) {
+      return escapeHtml(displayText(value));
+    }
     // MENU IMAGE LINKS - EDIT HERE
     const menuPages = [
       {
@@ -2720,6 +2835,7 @@
       }
 
       const currentValue = menuState.category;
+
       menuCategoryFilter.innerHTML = [
         '<button class="menu-category-chip' + (currentValue ? '' : ' is-active') + '" type="button" data-menu-category="">'
         + '<span class="category-chip-image"><img src="' + escapeHtml(getMenuAssetPath([getMenuTypeFolder(menuState.activeType), "category", "all"])) + '" alt="" loading="lazy"></span>'
@@ -2728,21 +2844,23 @@
       ].concat(categories.map((category) => {
         return '<button class="menu-category-chip' + (category === currentValue ? ' is-active' : '') + '" type="button" data-menu-category="' + escapeHtml(category) + '">'
           + '<span class="category-chip-image"><img src="' + escapeHtml(getCategoryImage(menuState.activeType, category)) + '" alt="" loading="lazy"></span>'
-          + '<span class="category-chip-label">' + escapeHtml(category) + '</span>'
+          + '<span class="category-chip-label">' + safeDisplay(category) + '</span>'
           + '</button>';
       })).join("");
     }
-
     function renderDataMenu() {
       if (!menuList) {
         return;
       }
 
       renderCategoryFilter();
+
       const items = getVisibleMenuItems();
+
       menuTabs.forEach((tab) => {
         tab.classList.toggle("is-active", tab.dataset.menuTab === menuState.activeType);
       });
+
       menuSummary.textContent = items.length + " položiek";
 
       if (!items.length) {
@@ -2755,31 +2873,37 @@
         const allergens = item.allergens.length
           ? item.allergens.map((allergen) => '<span class="menu-pill">' + escapeHtml(allergen) + '</span>').join("")
           : '<span class="menu-pill menu-placeholder">Bez alergénov</span>';
+
         const category = item.category
-          ? '<span class="menu-pill">' + escapeHtml(item.category) + '</span>'
+          ? '<span class="menu-pill">' + safeDisplay(item.category) + '</span>'
           : '<span class="menu-pill menu-placeholder">Bez kategórie</span>';
+
         const description = item.description
-          ? escapeHtml(item.description)
+          ? safeDisplay(item.description)
           : '<span class="menu-placeholder">Popis bude doplnený.</span>';
+
         const size = item.size
-          ? '<span class="menu-pill">' + escapeHtml(item.size) + '</span>'
+          ? '<span class="menu-pill">' + safeDisplay(item.size) + '</span>'
           : '';
+
         const quantity = getCartQuantity(item.id);
-        const image = '<div class="menu-item-image"><img src="' + escapeHtml(getItemImage(item)) + '" alt="' + escapeHtml(item.name) + '" loading="lazy"></div>';
+
+        const image = '<div class="menu-item-image"><img src="' + escapeHtml(getItemImage(item)) + '" alt="' + safeDisplay(item.name) + '" loading="lazy"></div>';
+
         const buttonText = quantity ? 'Pridané (' + quantity + ')' : 'Pridať do košíka';
 
         return ''
           + '<article class="menu-item">'
           + image
           + '<div class="menu-item-top">'
-          + '<h3>' + escapeHtml(item.name) + '</h3>'
+          + '<h3>' + safeDisplay(item.name) + '</h3>'
           + '<span class="menu-price">' + escapeHtml(item.price) + '</span>'
           + '</div>'
           + '<p class="menu-description">' + description + '</p>'
           + '<div class="menu-meta">' + category + size + '</div>'
           + '<div class="menu-meta">' + allergens + '</div>'
           + '<div class="menu-card-footer">'
-          + '<button class="button button-dark' + (quantity ? ' is-added' : '') + '" type="button" data-add-menu-item="' + escapeHtml(item.id) + '">' + buttonText + '</button>'
+          + '<button class="button button-dark' + (quantity ? ' is-added' : '') + '" type="button" data-add-menu-item="' + escapeHtml(item.id) + '">' + escapeHtml(buttonText) + '</button>'
           + '</div>'
           + '</article>';
       }).join("");
@@ -2798,11 +2922,16 @@
       }
 
       menuState.pendingItemId = itemId;
-      orderModalTitle.textContent = item.name;
-      orderModalText.textContent = item.price ? item.price + " · " + item.description : item.description;
+
+      orderModalTitle.textContent = displayText(item.name);
+      orderModalText.textContent = item.price
+        ? item.price + " · " + displayText(item.description)
+        : displayText(item.description);
+
       orderModal.classList.add("is-open");
       orderModal.setAttribute("aria-hidden", "false");
     }
+
 
     function closeModal() {
       menuState.pendingItemId = null;
@@ -2848,15 +2977,19 @@
 
       if (!menuState.cart.length) {
         cartList.innerHTML = '<div class="cart-empty">Zatiaľ nemáte vybrané žiadne jedlo. Vyberte si z menu a pridajte položky do objednávky.</div>';
+
         if (cartTotal) {
           cartTotal.innerHTML = '<span>Spolu</span><strong>0,00 €</strong>';
         }
+
         if (cartToolbarCount) {
           cartToolbarCount.textContent = "0";
         }
+
         if (openCartSheet) {
           openCartSheet.setAttribute("aria-label", "Otvoriť objednávku, 0 položiek");
         }
+
         return;
       }
 
@@ -2868,45 +3001,50 @@
 
         return ''
           + '<div class="cart-row">'
-          + '<div><strong>' + escapeHtml(item.name) + '</strong><br><span>' + cartItem.quantity + ' × ' + escapeHtml(item.price) + '</span></div>'
+          + '<div><strong>' + safeDisplay(item.name) + '</strong><br><span>' + escapeHtml(cartItem.quantity) + ' × ' + escapeHtml(item.price) + '</span></div>'
           + '<div class="cart-actions">'
-          + '<button type="button" data-cart-minus="' + escapeHtml(item.id) + '" aria-label="Znížiť počet ' + escapeHtml(item.name) + '">−</button>'
-          + '<span>' + cartItem.quantity + '</span>'
-          + '<button type="button" data-cart-plus="' + escapeHtml(item.id) + '" aria-label="Zvýšiť počet ' + escapeHtml(item.name) + '">+</button>'
+          + '<button type="button" data-cart-minus="' + escapeHtml(item.id) + '" aria-label="Znížiť počet ' + safeDisplay(item.name) + '">−</button>'
+          + '<span>' + escapeHtml(cartItem.quantity) + '</span>'
+          + '<button type="button" data-cart-plus="' + escapeHtml(item.id) + '" aria-label="Zvýšiť počet ' + safeDisplay(item.name) + '">+</button>'
           + '</div>'
           + '</div>';
       }).join("");
 
       const total = getCartTotal();
+
       if (cartTotal) {
         cartTotal.innerHTML = '<span>Spolu</span><strong>' + formatPrice(total) + '</strong>';
       }
+
       if (openCartSheet) {
         openCartSheet.setAttribute("aria-label", "Otvoriť objednávku, " + menuState.cart.length + " položiek, " + formatPrice(total));
       }
+
       if (cartToolbarCount) {
         cartToolbarCount.textContent = String(menuState.cart.reduce((sum, cartItem) => sum + cartItem.quantity, 0));
       }
     }
-
     function buildWhatsAppMessage() {
       const lines = [
         "Phong Nha",
         "Dobrý deň, chcem si objednať:"
       ];
+
       menuState.cart.forEach((cartItem) => {
         const item = findMenuItemById(cartItem.id);
         if (item) {
-          lines.push(cartItem.quantity + "x " + item.name + (item.price ? " - " + item.price : ""));
+          lines.push(cartItem.quantity + "x " + displayText(item.name) + (item.price ? " - " + item.price : ""));
         }
       });
+
       lines.push("Spolu: " + formatPrice(getCartTotal()));
+
       if (orderNote && orderNote.value.trim()) {
         lines.push("Poznámka: " + orderNote.value.trim());
       }
+
       return lines.join("\n");
     }
-
     function pageAt(index) {
       return menuPages[Math.max(0, Math.min(menuPages.length - 1, index))];
     }
