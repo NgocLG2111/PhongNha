@@ -1,0 +1,3088 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Phong Nha vo Vrútkach ponúka vietnamskú a ázijskú kuchyňu, elegantné menu a príjemnú atmosféru na adrese Karola Kalocsaya 3209.">
+  <title>Phong Nha | Vietnamská a ázijská reštaurácia vo Vrútkach</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap");
+
+    /* DESIGN TOKENS */
+    :root {
+      --cream: #f3e7d0;
+      --paper: #fff4dd;
+      --paper-soft: #f5e6c8;
+      --stone: #0d0d0c;
+      --charcoal: #151512;
+      --charcoal-2: #22201b;
+      --wood: #3a2418;
+      --wood-2: #6b3d24;
+      --moss: #697052;
+      --moss-dark: #3f4937;
+      --red: #b13b2f;
+      --red-dark: #7a251f;
+      --gold: #d9ad55;
+      --orange: #ff9d3d;
+      --pink: #ff4faf;
+      --cyan: #45d7ff;
+      --magenta: #ba65ff;
+      --yellow: #ffd75a;
+      --ink: #fff6e8;
+      --dark-ink: #201711;
+      --muted: #d8c6aa;
+      --muted-dark: #7b6654;
+      --line: rgba(255, 244, 221, 0.14);
+      --shadow: 0 34px 90px rgba(0, 0, 0, 0.42);
+      --soft-shadow: 0 18px 52px rgba(0, 0, 0, 0.24);
+      --radius: 18px;
+      --radius-small: 12px;
+      --max: 1180px;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+      --menu-font: Poppins, "Segoe UI", Arial, sans-serif;
+      --font-size-xs: 10px;
+      --font-size-sm: 12px;
+      --font-size-md: 14px;
+      --font-size-lg: 16px;
+      --font-size-xl: 18px;
+      --font-size-2xl: 20px;
+      --space-1: 4px;
+      --space-2: 5px;
+      --space-3: 7px;
+      --space-4: 8px;
+      --space-5: 10px;
+      --space-6: 12px;
+      --space-7: 16px;
+      --space-8: 20px;
+      --color-text-primary: var(--dark-ink);
+      --color-text-tertiary: var(--paper);
+      --color-surface-base: var(--paper-soft);
+      --color-surface-strong: var(--red);
+      --color-surface-muted: rgba(255, 244, 221, 0.08);
+      --radius-xs: 5px;
+      --radius-sm: 30px;
+      --radius-md: 100px;
+      --shadow-1: 0 4px 18px rgba(0, 0, 0, 0.2);
+      --motion-duration-instant: 200ms;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(255, 157, 61, 0.15), transparent 28rem),
+        radial-gradient(circle at 88% 4%, rgba(69, 215, 255, 0.11), transparent 25rem),
+        radial-gradient(circle at 56% 36%, rgba(186, 101, 255, 0.08), transparent 34rem),
+        linear-gradient(115deg, rgba(255, 244, 221, 0.05), transparent 34%),
+        var(--stone);
+      font-family: var(--sans);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.46;
+      z-index: -1;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.065) 0 1px, transparent 1px),
+        linear-gradient(rgba(255, 244, 221, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 244, 221, 0.018) 1px, transparent 1px);
+      background-size: 13px 13px, 38px 38px, 52px 52px;
+      mix-blend-mode: screen;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a.button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--gold);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      max-width: 820px;
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 6vw, 5rem);
+      font-weight: 500;
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 13px 22px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease, border-color 220ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      color: #fffdf7;
+      background: linear-gradient(135deg, var(--red), var(--red-dark));
+      box-shadow: 0 14px 30px rgba(111, 32, 27, 0.25);
+    }
+
+    .button-secondary {
+      color: var(--paper);
+      background: rgba(255, 244, 221, 0.08);
+      border-color: rgba(255, 244, 221, 0.2);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+    }
+
+    .button-dark {
+      color: var(--dark-ink);
+      background: var(--gold);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .button:disabled {
+      cursor: not-allowed;
+      opacity: 0.42;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* HEADER */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      padding: 14px 0;
+      backdrop-filter: blur(18px);
+      background: rgba(13, 13, 12, 0.74);
+      border-bottom: 1px solid rgba(255, 244, 221, 0.1);
+    }
+
+    .nav-shell {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      width: min(1260px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 10px 12px 10px 18px;
+      border: 1px solid rgba(255, 244, 221, 0.16);
+      border-radius: 999px;
+      background: rgba(27, 26, 22, 0.72);
+      box-shadow: 0 14px 42px rgba(0, 0, 0, 0.28);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 126px;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(14px, 3vw, 34px);
+      color: var(--paper);
+      font-size: 0.92rem;
+      font-weight: 800;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 8px 0;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 2px;
+      height: 1px;
+      transform: scaleX(0);
+      transform-origin: right;
+      background: linear-gradient(90deg, var(--orange), var(--pink), var(--cyan), var(--gold));
+      transition: transform 240ms ease;
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 88dvh;
+      display: grid;
+      align-items: center;
+      padding: 96px 0 88px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 7% -12% auto auto;
+      width: min(62vw, 820px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 48% 42%, rgba(255, 215, 90, 0.26), transparent 0 20%),
+        radial-gradient(circle at 58% 48%, rgba(255, 79, 175, 0.18), transparent 0 31%),
+        radial-gradient(circle at 50% 52%, rgba(69, 215, 255, 0.12), rgba(21, 21, 18, 0.82) 43%, transparent 68%);
+      filter: blur(0.2px);
+      opacity: 0.88;
+      animation: breathe 9s ease-in-out infinite;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 8% 6% auto;
+      width: min(34vw, 410px);
+      aspect-ratio: 1.25;
+      border: 1px solid rgba(217, 173, 85, 0.35);
+      border-radius: 52% 48% 58% 42%;
+      transform: rotate(-12deg);
+      background: rgba(255, 244, 221, 0.05);
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.72fr);
+      gap: clamp(42px, 7vw, 92px);
+      align-items: center;
+    }
+
+    .hero-logo {
+      width: min(430px, 72vw);
+      height: auto;
+      object-fit: contain;
+      display: block;
+      margin: 0 0 38px;
+      filter: drop-shadow(0 24px 34px rgba(49, 29, 18, 0.14));
+    }
+
+    h1 {
+      max-width: 980px;
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(3.25rem, 8.2vw, 7.6rem);
+      font-weight: 500;
+      line-height: 0.91;
+      letter-spacing: -0.052em;
+      color: var(--paper);
+    }
+
+    .hero p {
+      max-width: 630px;
+      margin: 28px 0 0;
+      color: var(--muted);
+      font-size: clamp(1.04rem, 2vw, 1.26rem);
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .hero-panel {
+      position: relative;
+      min-height: 560px;
+      border-radius: 34px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(13, 13, 12, 0.05), rgba(13, 13, 12, 0.42)),
+        url("https://images.unsplash.com/photo-1511910849309-0dffb8785146?auto=format&fit=crop&w=1100&q=82") center/cover;
+      box-shadow: var(--shadow);
+      isolation: isolate;
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(30deg, rgba(13, 13, 12, 0.78), transparent 58%),
+        radial-gradient(circle at 72% 16%, rgba(217, 173, 85, 0.26), transparent 34%),
+        radial-gradient(circle at 20% 70%, rgba(255, 79, 175, 0.16), transparent 32%);
+      z-index: -1;
+    }
+
+    .hero-card {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 24px;
+      padding: 24px;
+      border: 1px solid rgba(255, 244, 221, 0.24);
+      border-radius: 22px;
+      color: var(--paper);
+      background: rgba(13, 13, 12, 0.62);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-card strong {
+      display: block;
+      margin-bottom: 8px;
+      font-family: var(--serif);
+      font-size: 1.7rem;
+      font-weight: 500;
+    }
+
+    .hero-card span {
+      color: rgba(255, 249, 236, 0.76);
+      line-height: 1.6;
+    }
+
+    /* FEATURED DISHES */
+    .featured-section {
+      position: relative;
+      padding: clamp(82px, 11vw, 142px) 0;
+      background:
+        radial-gradient(circle at 18% 20%, rgba(255, 79, 175, 0.12), transparent 24rem),
+        radial-gradient(circle at 84% 40%, rgba(255, 215, 90, 0.11), transparent 28rem);
+    }
+
+    .featured-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.82fr) minmax(260px, 0.48fr);
+      gap: 34px;
+      align-items: end;
+      margin-bottom: 42px;
+    }
+
+    .featured-head p:last-child {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .dishes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .dish-card {
+      position: relative;
+      display: grid;
+      min-height: 430px;
+      border: 1px solid rgba(255, 244, 221, 0.16);
+      border-radius: 26px;
+      overflow: hidden;
+      background: rgba(255, 244, 221, 0.06);
+      box-shadow: var(--soft-shadow);
+      transition: transform 360ms cubic-bezier(.16, 1, .3, 1), border-color 360ms ease, box-shadow 360ms ease;
+    }
+
+    .dish-card:hover {
+      transform: translateY(-8px);
+      border-color: color-mix(in srgb, var(--dish-accent), white 24%);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.34), 0 0 34px color-mix(in srgb, var(--dish-accent), transparent 78%);
+    }
+
+    .dish-media {
+      min-height: 210px;
+      background:
+        radial-gradient(circle at 28% 20%, color-mix(in srgb, var(--dish-accent), white 10%), transparent 0 16%),
+        radial-gradient(circle at 76% 38%, color-mix(in srgb, var(--dish-accent), transparent 12%), transparent 0 28%),
+        linear-gradient(135deg, rgba(255, 244, 221, 0.12), rgba(13, 13, 12, 0.22)),
+        var(--charcoal-2);
+      background-position: center;
+      background-size: cover;
+      border-bottom: 1px solid rgba(255, 244, 221, 0.12);
+    }
+
+    .dish-body {
+      display: grid;
+      align-content: end;
+      gap: 16px;
+      padding: 26px;
+      background:
+        linear-gradient(180deg, rgba(255, 244, 221, 0.05), rgba(255, 244, 221, 0.09)),
+        rgba(21, 21, 18, 0.84);
+    }
+
+    .dish-name {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(1.7rem, 3vw, 2.35rem);
+      font-weight: 500;
+      color: var(--paper);
+      line-height: 1;
+    }
+
+    .dish-description {
+      margin: 0;
+      color: rgba(255, 244, 221, 0.74);
+      line-height: 1.7;
+    }
+
+    .dish-accent {
+      width: 58px;
+      height: 3px;
+      border-radius: 999px;
+      background: var(--dish-accent);
+      box-shadow: 0 0 18px var(--dish-accent);
+    }
+
+    /* MENU BOOK */
+    .menu-section {
+      padding: clamp(86px, 12vw, 156px) 0;
+      background:
+        linear-gradient(180deg, rgba(255, 244, 221, 0.03), rgba(105, 112, 82, 0.08)),
+        radial-gradient(circle at 4% 20%, rgba(69, 215, 255, 0.09), transparent 24rem);
+    }
+
+    .menu-section .container {
+      width: min(100% - 32px, 1480px);
+    }
+
+    .menu-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(250px, 0.45fr);
+      gap: 34px;
+      align-items: end;
+      margin-bottom: 52px;
+    }
+
+    .menu-intro p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.06rem;
+      line-height: 1.75;
+    }
+
+    .book-stage {
+      position: relative;
+      display: grid;
+      place-items: center;
+      padding: clamp(22px, 5vw, 62px);
+      border-radius: 36px;
+      background:
+        radial-gradient(circle at 50% 58%, rgba(0, 0, 0, 0.42), transparent 43%),
+        radial-gradient(circle at 16% 20%, rgba(255, 157, 61, 0.12), transparent 24rem),
+        linear-gradient(135deg, rgba(105, 112, 82, 0.18), rgba(255, 244, 221, 0.05));
+      box-shadow: inset 0 1px 0 rgba(255, 244, 221, 0.28);
+      perspective: 1700px;
+    }
+
+    .book {
+      position: relative;
+      width: min(610px, 100%);
+      aspect-ratio: 0.69;
+      border-radius: 22px;
+      transform-style: preserve-3d;
+      filter: drop-shadow(0 36px 44px rgba(45, 28, 20, 0.24));
+      transition: transform 360ms cubic-bezier(.16, 1, .3, 1), filter 360ms ease;
+    }
+
+    .book:hover {
+      transform: translateY(-4px) rotateX(1deg);
+      filter: drop-shadow(0 48px 62px rgba(0, 0, 0, 0.46));
+    }
+
+    .book::before {
+      content: "";
+      position: absolute;
+      inset: -14px;
+      border-radius: 28px;
+      background:
+        repeating-linear-gradient(90deg, rgba(255, 244, 221, 0.13) 0 1px, transparent 1px 5px),
+        linear-gradient(90deg, rgba(13, 13, 12, 0.96), rgba(107, 61, 36, 0.78) 9%, transparent 20% 80%, rgba(107, 61, 36, 0.78) 91%, rgba(13, 13, 12, 0.96)),
+        linear-gradient(135deg, var(--charcoal), var(--moss-dark));
+      box-shadow: var(--shadow);
+      z-index: -2;
+    }
+
+    .book::after {
+      content: "";
+      position: absolute;
+      inset: 11px auto 11px 9px;
+      width: 9px;
+      border-radius: 999px;
+      background: repeating-linear-gradient(180deg, rgba(58, 36, 24, 0.16) 0 1px, transparent 1px 5px);
+      box-shadow: 8px 0 22px rgba(45, 28, 20, 0.16);
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .book-hint {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      z-index: 9;
+      padding: 8px 12px;
+      border: 1px solid rgba(255, 244, 221, 0.18);
+      border-radius: 999px;
+      color: rgba(255, 244, 221, 0.76);
+      background: rgba(13, 13, 12, 0.56);
+      backdrop-filter: blur(10px);
+      font-size: 0.78rem;
+      font-weight: 800;
+      opacity: 0;
+      transform: translateY(-6px);
+      transition: opacity 260ms ease, transform 260ms ease;
+      pointer-events: none;
+    }
+
+    .book:hover .book-hint {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .page-spread {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      border-radius: 18px;
+      overflow: hidden;
+      background: var(--paper);
+      box-shadow: inset 0 0 0 1px rgba(78, 43, 29, 0.12);
+    }
+
+    .page-spread::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      bottom: 10px;
+      width: 8px;
+      background: repeating-linear-gradient(180deg, rgba(58, 36, 24, 0.16) 0 1px, transparent 1px 5px);
+      z-index: 3;
+      opacity: 0.7;
+
+
+      left: 10px;
+    }
+
+    .book-page {
+      position: relative;
+      display: grid;
+      place-items: center;
+      padding: clamp(12px, 2vw, 22px);
+      background:
+        linear-gradient(90deg, rgba(45, 28, 20, 0.08), transparent 13%),
+        var(--paper);
+      overflow: hidden;
+    }
+
+    .book-page img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(45, 28, 20, 0.12);
+    }
+
+    .turn-page {
+      display: none;
+    }
+
+    .turn-face {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: clamp(12px, 2vw, 22px);
+      backface-visibility: hidden;
+      background: var(--paper-soft);
+      overflow: hidden;
+    }
+
+    .turn-face.back {
+      transform: rotateY(180deg);
+      background: var(--paper);
+    }
+
+    .turn-face img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(45, 28, 20, 0.12);
+    }
+
+    .book-click {
+      position: absolute;
+      inset: 0;
+      z-index: 8;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .book-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-top: 28px;
+    }
+
+    .book-nav {
+      position: absolute;
+      top: 50%;
+      z-index: 10;
+      width: 56px;
+      height: 56px;
+      min-height: 56px;
+      padding: 0;
+      border-radius: 50%;
+      transform: translateY(-50%);
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.26);
+    }
+
+    .book-nav:hover {
+      transform: translateY(calc(-50% - 2px));
+    }
+
+    .book-nav.prev {
+      left: clamp(-86px, -7vw, -66px);
+    }
+
+    .book-nav.next {
+      right: clamp(-86px, -7vw, -66px);
+    }
+
+    .page-count {
+      min-width: 128px;
+      color: var(--wood);
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .book-note {
+      margin: 18px auto 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+      text-align: center;
+    }
+
+    .menu-panel {
+      border: 1px solid rgba(255, 244, 221, 0.16);
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 14% 8%, rgba(255, 157, 61, 0.12), transparent 22rem),
+        radial-gradient(circle at 86% 18%, rgba(69, 215, 255, 0.1), transparent 24rem),
+        rgba(21, 21, 18, 0.72);
+      box-shadow: var(--shadow);
+      overflow: clip;
+      font-family: var(--menu-font);
+    }
+
+    .menu-category-shell.is-stuck .menu-category-chip {
+      min-height: 40px;
+      width: auto;
+      padding: var(--space-4) var(--space-7);
+      border-radius: var(--radius-md);
+    }
+
+    .menu-category-shell.is-stuck .category-chip-image {
+      display: none;
+    }
+
+    .menu-category-shell.is-stuck .menu-category-chips {
+      padding-bottom: var(--space-2);
+    }
+
+    .menu-toolbar {
+      display: grid;
+      grid-template-columns: auto minmax(260px, 1fr) auto auto;
+      gap: var(--space-6) var(--space-7);
+      align-items: center;
+      padding: var(--space-8);
+      border-bottom: 1px solid rgba(255, 244, 221, 0.12);
+      background: rgba(13, 13, 12, 0.42);
+    }
+
+    .menu-category-shell {
+      position: sticky;
+      top: 82px;
+      z-index: 18;
+      padding: var(--space-8);
+      border-bottom: 1px solid rgba(255, 244, 221, 0.12);
+      background: rgba(13, 13, 12, 0.92);
+      backdrop-filter: blur(14px);
+      transition: padding var(--motion-duration-instant) ease, background var(--motion-duration-instant) ease;
+    }
+
+    .menu-category-shell.is-stuck {
+      padding-block: var(--space-5);
+      background: rgba(13, 13, 12, 0.96);
+    }
+
+    .menu-tabs {
+      display: inline-flex;
+      gap: var(--space-4);
+      padding: var(--space-2);
+      border: 1px solid rgba(255, 244, 221, 0.15);
+      border-radius: var(--radius-md);
+      background: var(--color-surface-muted);
+    }
+
+    .menu-tab {
+      min-height: 40px;
+      padding: var(--space-5) var(--space-7);
+      border: 0;
+      border-radius: var(--radius-md);
+      color: rgba(255, 244, 221, 0.74);
+      background: transparent;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 900;
+      font-size: var(--font-size-md);
+    }
+
+    .menu-tab.is-active {
+      color: var(--dark-ink);
+      background: var(--gold);
+    }
+
+    .menu-tab:hover,
+    .menu-category-chip:hover,
+    .cart-actions button:hover,
+    .cart-close:hover {
+      border-color: rgba(217, 173, 85, 0.5);
+      background: rgba(217, 173, 85, 0.16);
+    }
+
+    .menu-tab:active,
+    .menu-category-chip:active,
+    .cart-actions button:active,
+    .cart-close:active {
+      transform: translateY(1px);
+    }
+
+    .menu-tab:focus-visible,
+    .menu-search:focus-visible,
+    .menu-category-chip:focus-visible,
+    .cart-actions button:focus-visible,
+    .cart-close:focus-visible,
+    .floating-cart-button:focus-visible {
+      outline: 3px solid rgba(217, 173, 85, 0.72);
+      outline-offset: 3px;
+    }
+
+    .menu-cart-button {
+      display: inline-flex;
+      gap: var(--space-3);
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: var(--space-5) var(--space-7);
+      border: 0;
+      border-radius: var(--radius-xs);
+      color: var(--dark-ink);
+      background: var(--gold);
+      box-shadow: var(--shadow-1);
+      cursor: pointer;
+      font: inherit;
+      font-size: var(--font-size-md);
+      font-weight: 950;
+      transition: transform var(--motion-duration-instant) ease, background var(--motion-duration-instant) ease;
+    }
+
+    .menu-cart-button:hover {
+      background: var(--yellow);
+    }
+
+    .menu-cart-button:active {
+      transform: translateY(1px);
+    }
+
+    .menu-cart-button:focus-visible {
+      outline: 3px solid rgba(217, 173, 85, 0.72);
+      outline-offset: 3px;
+    }
+
+    .cart-bag-icon {
+      position: relative;
+      width: 16px;
+      height: 14px;
+      display: inline-block;
+      border-radius: 2px 2px 3px 3px;
+      background: var(--paper);
+    }
+
+    .cart-bag-icon::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: -5px;
+      width: 8px;
+      height: 8px;
+      border: 2px solid var(--paper);
+      border-bottom: 0;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .menu-search {
+      width: 100%;
+      min-height: 48px;
+      padding: var(--space-6) var(--space-7);
+      border: 1px solid rgba(255, 244, 221, 0.17);
+      border-radius: var(--radius-md);
+      color: var(--paper);
+      background: var(--color-surface-muted);
+      font: inherit;
+      font-size: var(--font-size-md);
+      outline: none;
+    }
+
+    .menu-search::placeholder {
+      color: rgba(255, 244, 221, 0.48);
+    }
+
+    .menu-category-chips {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: var(--space-5);
+      align-items: center;
+      min-width: 0;
+      max-width: 100%;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      padding: var(--space-1) 0 var(--space-4);
+      scrollbar-width: thin;
+      scrollbar-color: rgba(217, 173, 85, 0.72) rgba(255, 244, 221, 0.07);
+      scroll-snap-type: x proximity;
+    }
+
+    .menu-category-chip {
+      width: 106px;
+      min-height: 146px;
+      padding: var(--space-6) var(--space-5);
+      border: 1px solid rgba(255, 244, 221, 0.18);
+      border-radius: var(--radius-xs);
+      color: var(--dark-ink);
+      background: var(--paper);
+      cursor: pointer;
+      font: inherit;
+      font-weight: 800;
+      font-size: var(--font-size-md);
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: grid;
+      place-items: center;
+      align-content: center;
+      gap: var(--space-5);
+      text-align: center;
+      transition: color var(--motion-duration-instant) ease, background var(--motion-duration-instant) ease, border-color var(--motion-duration-instant) ease;
+    }
+
+    .menu-category-chip.is-active {
+      color: var(--dark-ink);
+      background: var(--gold);
+      border-color: transparent;
+    }
+
+    .category-chip-image {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 35% 30%, rgba(217, 173, 85, 0.48), transparent 3.6rem),
+        linear-gradient(135deg, rgba(32, 23, 17, 0.92), rgba(105, 112, 82, 0.76));
+    }
+
+    .category-chip-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .category-chip-label {
+      display: block;
+      line-height: 1.25;
+    }
+
+    .menu-summary {
+      color: rgba(255, 244, 221, 0.72);
+      font-weight: 900;
+      font-size: var(--font-size-md);
+      white-space: nowrap;
+    }
+
+    .menu-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+      padding: var(--space-8);
+      min-width: 0;
+    }
+
+    .menu-list {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-auto-rows: minmax(560px, auto);
+      gap: var(--space-7);
+      align-content: start;
+      min-width: 0;
+      max-height: none;
+      overflow: visible;
+      padding-right: 0;
+    }
+
+    .menu-list::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    .menu-list::-webkit-scrollbar-track {
+      background: rgba(255, 244, 221, 0.07);
+      border-radius: 999px;
+    }
+
+    .menu-list::-webkit-scrollbar-thumb {
+      background: rgba(217, 173, 85, 0.72);
+      border-radius: 999px;
+    }
+
+    .menu-item {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 230px auto minmax(92px, auto) auto auto 48px;
+      gap: var(--space-6);
+      padding: var(--space-6);
+      border: 1px solid rgba(255, 244, 221, 0.14);
+      border-radius: var(--radius-sm);
+      background: var(--color-surface-base);
+      color: var(--color-text-primary);
+      box-shadow: var(--shadow-1);
+      min-width: 0;
+      overflow: hidden;
+      height: 100%;
+      min-height: 560px;
+      transition: transform var(--motion-duration-instant) ease, box-shadow var(--motion-duration-instant) ease, border-color var(--motion-duration-instant) ease;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-2px);
+      border-color: rgba(217, 173, 85, 0.42);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.24);
+    }
+
+    .menu-item-image {
+      position: relative;
+      display: grid;
+      place-items: center;
+      grid-row: auto;
+      min-width: 0;
+      min-height: 0;
+      height: 100%;
+      border-radius: 24px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 28% 25%, rgba(217, 173, 85, 0.35), transparent 6rem),
+        radial-gradient(circle at 78% 70%, rgba(177, 59, 47, 0.18), transparent 7rem),
+        linear-gradient(135deg, rgba(32, 23, 17, 0.9), rgba(105, 112, 82, 0.7));
+    }
+
+    .menu-item-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .menu-item-image.image--contain img {
+      object-fit: contain;
+      padding: 8px;
+      background: rgba(255, 244, 221, 0.38);
+    }
+
+    .menu-item-image span {
+      color: rgba(255, 244, 221, 0.82);
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+    }
+
+    .menu-item-top {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-6);
+      align-items: flex-start;
+      min-width: 0;
+    }
+
+    .menu-item h3 {
+      margin: 0;
+      font-family: var(--menu-font);
+      font-size: var(--font-size-xl);
+      font-weight: 950;
+      line-height: 1.16;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .menu-price {
+      color: var(--red-dark);
+      font-weight: 950;
+      font-size: var(--font-size-md);
+      white-space: nowrap;
+      padding-top: 2px;
+    }
+
+    .menu-description {
+      margin: 0;
+      color: var(--muted-dark);
+      line-height: 1.5;
+      font-size: var(--font-size-md);
+      min-width: 0;
+      overflow-wrap: anywhere;
+      word-break: normal;
+      min-height: 0;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      font-weight: 650;
+    }
+
+    .menu-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      min-height: 24px;
+      align-items: center;
+    }
+
+    .menu-card-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .menu-card-label {
+      display: none;
+    }
+
+    .menu-placeholder {
+      opacity: 0.42;
+    }
+
+    .menu-card-footer {
+      margin-top: 0;
+      padding-top: 0;
+      align-self: end;
+    }
+
+    .menu-pill {
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-md);
+      color: rgba(255, 244, 221, 0.86);
+      background: rgba(32, 23, 17, 0.84);
+      font-size: var(--font-size-sm);
+      font-weight: 900;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+    }
+
+    .menu-item .button {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      min-height: 44px;
+      padding: var(--space-5) var(--space-7);
+      white-space: normal;
+      text-align: center;
+      border-radius: var(--radius-md);
+      font-size: var(--font-size-md);
+      font-weight: 900;
+    }
+
+    .menu-item .button.is-added {
+      color: var(--paper);
+      background: var(--color-surface-strong);
+    }
+
+    .menu-empty {
+      padding: 42px;
+      border: 1px dashed rgba(255, 244, 221, 0.22);
+      border-radius: 22px;
+      color: rgba(255, 244, 221, 0.72);
+      text-align: center;
+      grid-column: 1 / -1;
+    }
+
+    .order-card {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      z-index: 75;
+      width: min(920px, calc(100% - 28px));
+      max-height: min(86vh, 760px);
+      padding: var(--space-8);
+      border: 1px solid rgba(255, 244, 221, 0.14);
+      border-radius: var(--radius-sm);
+      background: var(--charcoal);
+      box-shadow: var(--shadow);
+      overflow: auto;
+      display: grid;
+      grid-template-columns: minmax(240px, 1fr) minmax(260px, 0.84fr);
+      gap: var(--space-7);
+      align-items: start;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, -46%) scale(0.98);
+      transition: opacity var(--motion-duration-instant) ease, transform var(--motion-duration-instant) ease;
+    }
+
+    .order-card.is-open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .order-card-head {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-6);
+      align-items: center;
+      margin-bottom: 0;
+      grid-column: 1 / 3;
+      grid-row: 1;
+    }
+
+    .order-card h3 {
+      margin: 0;
+      color: var(--paper);
+      font-family: var(--menu-font);
+      font-size: var(--font-size-2xl);
+      font-weight: 950;
+    }
+
+    .cart-close {
+      display: inline-grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255, 244, 221, 0.16);
+      border-radius: 50%;
+      color: var(--paper);
+      background: rgba(255, 244, 221, 0.08);
+      cursor: pointer;
+      font: inherit;
+      font-weight: 900;
+      transition: transform var(--motion-duration-instant) ease, background var(--motion-duration-instant) ease, border-color var(--motion-duration-instant) ease;
+    }
+
+    .cart-list {
+      display: grid;
+      gap: var(--space-5);
+      min-height: 0;
+      max-height: 210px;
+      margin-bottom: 0;
+      color: rgba(255, 244, 221, 0.76);
+      overflow-y: auto;
+      padding-right: 4px;
+      grid-column: 2;
+      grid-row: 2 / 6;
+      max-height: 420px;
+    }
+
+    .cart-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-5);
+      align-items: center;
+      padding: var(--space-5) 0;
+      border-bottom: 1px solid rgba(255, 244, 221, 0.1);
+      font-size: var(--font-size-md);
+    }
+
+    .cart-empty {
+      padding: var(--space-7);
+      border: 1px dashed rgba(255, 244, 221, 0.18);
+      border-radius: var(--radius-xs);
+      color: rgba(255, 244, 221, 0.74);
+      line-height: 1.55;
+      font-size: var(--font-size-md);
+    }
+
+    .cart-row strong {
+      color: var(--paper);
+    }
+
+    .cart-actions {
+      display: flex;
+      gap: var(--space-4);
+      align-items: center;
+    }
+
+    .cart-actions button {
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255, 244, 221, 0.16);
+      border-radius: 50%;
+      color: var(--paper);
+      background: rgba(255, 244, 221, 0.08);
+      cursor: pointer;
+      font: inherit;
+      font-weight: 950;
+      transition: transform var(--motion-duration-instant) ease, background var(--motion-duration-instant) ease, border-color var(--motion-duration-instant) ease;
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-6);
+      padding: 0 0 var(--space-5);
+      border-top: 0;
+      border-bottom: 1px solid rgba(255, 244, 221, 0.16);
+      color: var(--paper);
+      font-weight: 950;
+      font-size: var(--font-size-lg);
+      grid-column: 4;
+      grid-column: 1;
+      grid-row: 3;
+    }
+
+    .order-note {
+      width: 100%;
+      min-height: 76px;
+      resize: vertical;
+      margin: 0 0 var(--space-5);
+      padding: var(--space-6) var(--space-7);
+      border: 1px solid rgba(255, 244, 221, 0.16);
+      border-radius: var(--radius-xs);
+      color: var(--paper);
+      background: rgba(13, 13, 12, 0.36);
+      font: inherit;
+      font-size: var(--font-size-md);
+      outline: none;
+      grid-column: 3;
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .order-note:focus-visible {
+      outline: 3px solid rgba(217, 173, 85, 0.72);
+      outline-offset: 3px;
+    }
+
+    .order-error {
+      min-height: 22px;
+      margin: 0 0 var(--space-5);
+      color: #ffd0c9;
+      font-weight: 800;
+      font-size: var(--font-size-sm);
+      grid-column: 1 / 3;
+      grid-row: 5;
+    }
+
+    .order-card > .button {
+      grid-column: 1;
+      grid-row: 4;
+      width: 100%;
+      align-self: end;
+    }
+
+    .floating-cart-button,
+    .cart-backdrop {
+      display: none;
+    }
+
+    .cart-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 70;
+      opacity: 0;
+      pointer-events: none;
+      background: rgba(0, 0, 0, 0.62);
+      backdrop-filter: blur(8px);
+      transition: opacity var(--motion-duration-instant) ease;
+    }
+
+    .cart-backdrop.is-open {
+      display: block;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .order-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      place-items: center;
+      padding: 18px;
+      background: rgba(0, 0, 0, 0.62);
+      backdrop-filter: blur(10px);
+    }
+
+    .order-modal.is-open {
+      display: grid;
+    }
+
+    .order-dialog {
+      width: min(520px, 100%);
+      padding: 26px;
+      border: 1px solid rgba(255, 244, 221, 0.18);
+      border-radius: 24px;
+      color: var(--paper);
+      background: var(--charcoal);
+      box-shadow: var(--shadow);
+    }
+
+    .order-dialog h3 {
+      margin: 0 0 10px;
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 500;
+    }
+
+    .book-stage,
+    .book-controls,
+    .book-note {
+      display: none !important;
+    }
+
+    /* OPENING HOURS */
+    .hours-section {
+      padding: clamp(82px, 12vw, 150px) 0;
+    }
+
+    .hours-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 42px;
+    }
+
+    .hours-head p {
+      max-width: 360px;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .hours-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .hours-card {
+      position: relative;
+      min-height: 180px;
+      padding: 24px;
+      border: 1px solid rgba(78, 43, 29, 0.13);
+      border-radius: var(--radius);
+      background: rgba(255, 249, 236, 0.64);
+      box-shadow: var(--soft-shadow);
+      overflow: hidden;
+    }
+
+    .hours-card.highlight {
+      color: #fff9ec;
+      background:
+        radial-gradient(circle at 80% 14%, rgba(200, 161, 95, 0.42), transparent 34%),
+        linear-gradient(145deg, var(--red), var(--wood));
+      border-color: rgba(255, 249, 236, 0.18);
+      transform: translateY(-12px);
+    }
+
+    .hours-card span {
+      display: block;
+      color: var(--muted-dark);
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+    }
+
+    .hours-card.highlight span {
+      color: rgba(255, 249, 236, 0.72);
+    }
+
+    .hours-card strong {
+      display: block;
+      margin-top: 38px;
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 3vw, 2.45rem);
+      font-weight: 500;
+      color: var(--wood);
+    }
+
+    .hours-card.highlight strong {
+      color: #fff9ec;
+    }
+
+    /* CONTACT */
+    .contact-section {
+      padding: clamp(78px, 12vw, 150px) 0 clamp(92px, 12vw, 160px);
+      background:
+        linear-gradient(180deg, transparent, rgba(45, 28, 20, 0.06)),
+        radial-gradient(circle at 78% 42%, rgba(158, 47, 37, 0.12), transparent 28rem);
+    }
+
+    .contact-card {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(280px, 0.7fr);
+      gap: clamp(30px, 6vw, 78px);
+      align-items: stretch;
+      padding: clamp(24px, 5vw, 54px);
+      border: 1px solid rgba(78, 43, 29, 0.14);
+      border-radius: 34px;
+      background:
+        linear-gradient(135deg, rgba(255, 249, 236, 0.84), rgba(251, 241, 223, 0.62)),
+        radial-gradient(circle at 10% 10%, rgba(200, 161, 95, 0.16), transparent 18rem);
+      box-shadow: var(--shadow);
+      color: var(--dark-ink);
+    }
+
+    .contact-card p {
+      max-width: 560px;
+      color: var(--muted-dark);
+      font-size: 1.08rem;
+      line-height: 1.78;
+    }
+
+    .contact-card .section-title {
+      color: var(--dark-ink);
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .contact-details {
+      display: grid;
+      gap: 14px;
+    }
+
+    .detail {
+      padding: 22px;
+      border-radius: var(--radius);
+      background: rgba(45, 28, 20, 0.92);
+      color: #fff9ec;
+      box-shadow: 0 18px 36px rgba(45, 28, 20, 0.2);
+    }
+
+    .detail span {
+      display: block;
+      margin-bottom: 10px;
+      color: rgba(255, 249, 236, 0.62);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .detail strong {
+      display: block;
+      font-size: clamp(1.08rem, 2vw, 1.32rem);
+      line-height: 1.45;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      padding: 34px 0;
+      color: rgba(255, 249, 236, 0.72);
+      background: var(--wood);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      color: #fff9ec;
+      font-family: var(--serif);
+      font-size: 1.35rem;
+    }
+
+    .footer-brand img {
+      width: 96px;
+      filter: brightness(1.1);
+    }
+
+    /* ANIMATIONS */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 760ms ease, transform 760ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes breathe {
+
+      0%,
+      100% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+
+      50% {
+        transform: translate3d(-18px, 16px, 0) scale(1.04);
+      }
+    }
+
+    @keyframes turnNext {
+      0% {
+        transform: rotateY(0deg) translateZ(0);
+        filter: drop-shadow(-14px 14px 18px rgba(0, 0, 0, 0.18));
+      }
+
+      42% {
+        transform: rotateY(-86deg) translateZ(18px);
+        filter: drop-shadow(-34px 22px 34px rgba(0, 0, 0, 0.34));
+      }
+
+      100% {
+        transform: rotateY(-180deg) translateZ(0);
+        filter: drop-shadow(18px 18px 22px rgba(0, 0, 0, 0.22));
+      }
+    }
+
+    @keyframes turnPrev {
+      0% {
+        transform: rotateY(-180deg) translateZ(0);
+        filter: drop-shadow(18px 18px 22px rgba(0, 0, 0, 0.22));
+      }
+
+      42% {
+        transform: rotateY(-94deg) translateZ(18px);
+        filter: drop-shadow(-34px 22px 34px rgba(0, 0, 0, 0.34));
+      }
+
+      100% {
+        transform: rotateY(0deg) translateZ(0);
+        filter: drop-shadow(-14px 14px 18px rgba(0, 0, 0, 0.18));
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 1ms !important;
+      }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 980px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-grid,
+      .menu-intro,
+      .featured-head,
+      .contact-card {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 72px;
+      }
+
+      .hero-panel {
+        min-height: 420px;
+      }
+
+      .hours-head {
+        display: block;
+      }
+
+      .hours-head p {
+        margin-top: 18px;
+      }
+
+      .hours-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .dishes-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .menu-content {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-toolbar {
+        grid-template-columns: auto minmax(0, 1fr) auto auto;
+        gap: var(--space-5);
+      }
+
+      .menu-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .order-card {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        z-index: 75;
+        width: min(920px, calc(100% - 28px));
+        grid-template-columns: 1fr;
+        max-height: min(86vh, 760px);
+        background: var(--charcoal);
+        transform: translate(-50%, -46%) scale(0.98);
+        box-shadow: var(--shadow);
+      }
+
+      .order-card.is-open {
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      .order-card-head {
+        position: sticky;
+        top: 0;
+        padding-bottom: 10px;
+        background: var(--charcoal);
+        grid-column: 1;
+        grid-row: auto;
+      }
+
+      .cart-close {
+        display: inline-grid;
+      }
+
+      .cart-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 70;
+        display: none;
+      }
+
+      .cart-backdrop.is-open {
+        display: block;
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .cart-list,
+      .order-note,
+      .cart-total,
+      .order-error,
+      .order-card > .button {
+        grid-column: 1;
+        grid-row: auto;
+      }
+
+      .floating-cart-button {
+        display: none;
+      }
+
+      .floating-cart-button.is-hidden {
+        display: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .menu-toolbar {
+        position: relative;
+        top: auto;
+        z-index: auto;
+      }
+
+      .menu-list {
+        grid-template-columns: 1fr;
+        grid-auto-rows: minmax(214px, auto);
+        max-height: none;
+        overflow: visible;
+        padding-right: 0;
+        padding-bottom: 82px;
+      }
+
+      .menu-item {
+        grid-template-columns: 104px minmax(0, 1fr);
+        grid-template-rows: auto minmax(62px, auto) auto auto 46px;
+        min-height: 214px;
+      }
+
+      .menu-item-image {
+        grid-row: 1 / 6;
+      }
+
+      .menu-content {
+        padding: 12px;
+      }
+
+      .menu-category-shell {
+        top: 72px;
+        padding: var(--space-6);
+      }
+
+      .menu-category-shell.is-stuck {
+        padding-block: var(--space-4);
+      }
+
+      .menu-category-chips {
+        margin-inline: -2px;
+      }
+
+      .menu-category-chip {
+        width: 94px;
+        min-height: 124px;
+        padding: var(--space-5) var(--space-4);
+        font-size: var(--font-size-sm);
+      }
+
+      .category-chip-image {
+        width: 58px;
+        height: 58px;
+      }
+
+      .menu-category-shell.is-stuck .menu-category-chip {
+        min-height: 38px;
+        width: auto;
+        padding: var(--space-4) var(--space-6);
+        font-size: var(--font-size-sm);
+      }
+    }
+
+    @media (max-width: 430px) {
+      .menu-toolbar {
+        grid-template-columns: 1fr auto;
+        padding: var(--space-6);
+      }
+
+      .menu-tabs {
+        grid-column: 1 / -1;
+        width: 100%;
+      }
+
+      .menu-search {
+        grid-column: 1;
+      }
+
+      .menu-cart-button {
+        grid-column: 2;
+        padding-inline: var(--space-6);
+      }
+
+      .menu-category-chips,
+      .menu-summary {
+        grid-column: 1 / -1;
+      }
+
+      .menu-category-shell {
+        padding-inline: var(--space-5);
+      }
+
+      .menu-category-chip {
+        width: 86px;
+        min-height: 116px;
+      }
+
+      .category-chip-image {
+        width: 52px;
+        height: 52px;
+      }
+
+      .menu-tab {
+        flex: 1 1 0;
+        padding-inline: var(--space-5);
+      }
+
+      .menu-item {
+        grid-template-columns: 92px minmax(0, 1fr);
+        gap: var(--space-4) var(--space-5);
+        min-height: 218px;
+      }
+
+      .menu-item h3 {
+        font-size: var(--font-size-lg);
+      }
+
+      .menu-description {
+        -webkit-line-clamp: 3;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        width: min(100% - 22px, var(--max));
+      }
+
+      .site-header {
+        padding: 8px 0;
+      }
+
+      .nav-shell {
+        width: calc(100% - 16px);
+        padding: 8px 8px 8px 12px;
+      }
+
+      .brand img {
+        width: 104px;
+      }
+
+      .site-header .button {
+        min-height: 42px;
+        padding: 10px 15px;
+        font-size: 0.9rem;
+      }
+
+      h1 {
+        font-size: clamp(2.95rem, 15vw, 4.7rem);
+      }
+
+      .hero-logo {
+        margin-bottom: 28px;
+      }
+
+      .hero-panel {
+        min-height: 360px;
+        border-radius: 24px;
+      }
+
+      .hero-card {
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+        padding: 18px;
+      }
+
+      .book-stage {
+        padding: 12px;
+        border-radius: 24px;
+      }
+
+      .book {
+        aspect-ratio: 0.7;
+      }
+
+      .book::before {
+        inset: -8px;
+      }
+
+      .book-hint {
+        opacity: 1;
+        transform: none;
+        top: 12px;
+        right: 12px;
+      }
+
+      .book-nav {
+        width: 46px;
+        height: 46px;
+        min-height: 46px;
+      }
+
+      .book-nav.prev {
+        left: 10px;
+      }
+
+      .book-nav.next {
+        right: 10px;
+      }
+
+      .dishes-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hours-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hours-card.highlight {
+        transform: none;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="site-header" aria-label="Hlavná navigácia">
+    <div class="nav-shell">
+      <a class="brand" href="#domov" aria-label="Phong Nha domov">
+        <img
+          src="https://statics.pancake.vn/web-media-262/cc/53/9b/b9/540c34d1d5d05e9d3cf6e19db9958236f5faf2cbfc550c7e321750d8-w:1983-h:793-l:154093-t:image/jpeg.jpg"
+          alt="Logo Phong Nha">
+      </a>
+      <nav class="nav-links" aria-label="Navigácia stránky">
+        <a href="#domov">Domov</a>
+        <a href="#menu">Menu</a>
+        <a href="#hodiny">Otváracie hodiny</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+      <a class="button button-primary" href="tel:0948919999" aria-label="Zavolať do reštaurácie Phong Nha">Zavolať</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="domov">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <img class="hero-logo"
+            src="https://statics.pancake.vn/web-media-262/cc/53/9b/b9/540c34d1d5d05e9d3cf6e19db9958236f5faf2cbfc550c7e321750d8-w:1983-h:793-l:154093-t:image/jpeg.jpg"
+            alt="Phong Nha">
+          <h1>Vitajte v reštaurácii Phong Nha</h1>
+          <p>Vietnamská a ázijská kuchyňa vo Vrútkach s vôňou čerstvých byliniek, teplým servisom a menu pripraveným na
+            pokojný obed aj večerné stretnutie.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#menu">Zobraziť menu</a>
+            <a class="button button-secondary" href="tel:0948919999">Zavolať teraz</a>
+          </div>
+        </div>
+        <aside class="hero-panel reveal" aria-label="Atmosféra reštaurácie">
+          <div class="hero-card">
+            <strong>Ázijská kuchyňa vo Vrútkach</strong>
+            <span>Karola Kalocsaya 3209, každý deň s teplými jedlami, vôňou wok panvice a pokojnou reštauračnou
+              atmosférou.</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- FEATURED DISHES -->
+    <section class="featured-section" id="oblubene-jedla">
+      <div class="container">
+        <div class="featured-head reveal">
+          <div>
+            <p class="eyebrow">Denné menu a klasiky</p>
+            <h2 class="section-title">Obľúbené jedlá</h2>
+          </div>
+          <p>Výber jedál, ktoré prirodzene spájajú vietnamskú sviežosť, ázijské omáčky a moderný menu štýl Phong Nha.
+          </p>
+        </div>
+        <div class="dishes-grid" id="featuredDishesGrid" aria-label="Obľúbené jedlá"></div>
+      </div>
+    </section>
+
+    <!-- MENU BOOK -->
+    <section class="menu-section" id="menu">
+      <div class="container">
+        <div class="menu-intro reveal">
+          <div>
+            <p class="eyebrow">Phong Nha</p>
+            <h2 class="section-title">MENU</h2>
+          </div>
+          <p>Vyberte si z hlavného alebo denného menu, filtrujte podľa skupiny jedál a pripravte objednávku priamo cez
+            WhatsApp.</p>
+        </div>
+
+        <div class="menu-panel">
+          <div class="menu-toolbar">
+            <div class="menu-tabs" role="tablist" aria-label="Typ menu">
+              <button class="menu-tab is-active" type="button" data-menu-tab="main_menu">Hlavné menu</button>
+              <button class="menu-tab" type="button" data-menu-tab="lunch_menu">Denné menu</button>
+            </div>
+            <input class="menu-search" id="menuSearch" type="search" placeholder="Hľadať v menu"
+              aria-label="Hľadať v menu">
+            <button class="menu-cart-button" id="openCartSheet" type="button" aria-label="Otvoriť objednávku">
+              <span class="cart-bag-icon" aria-hidden="true"></span>
+              <span id="cartToolbarCount">0</span>
+            </button>
+            <div class="menu-summary" id="menuSummary">0 položiek</div>
+          </div>
+          <div class="menu-category-shell" id="menuCategoryShell">
+            <div class="menu-category-chips" id="menuCategoryFilter" aria-label="Filtrovať podľa skupiny"></div>
+          </div>
+          <div class="menu-content">
+            <div class="menu-list" id="menuList" aria-live="polite"></div>
+            <aside class="order-card" id="orderCard" role="dialog" aria-label="Vaša objednávka" aria-modal="false" aria-hidden="true">
+              <div class="order-card-head">
+                <h3>Vaša objednávka</h3>
+                <button class="cart-close" id="closeCartSheet" type="button" aria-label="Zavrieť objednávku">×</button>
+              </div>
+              <div class="cart-list" id="cartList">Zatiaľ nemáte vybrané žiadne jedlo.</div>
+              <textarea class="order-note" id="orderNote" placeholder="Poznámka k objednávke" aria-label="Poznámka k objednávke"></textarea>
+              <div class="cart-total" id="cartTotal"><span>Spolu</span><strong>0,00 €</strong></div>
+              <p class="order-error" id="orderError" aria-live="polite"></p>
+              <button class="button button-primary" id="sendWhatsAppOrder" type="button">Objednať cez WhatsApp</button>
+            </aside>
+          </div>
+        </div>
+        <div class="cart-backdrop" id="cartBackdrop" aria-hidden="true"></div>
+
+        <div class="book-stage reveal">
+          <div class="book" id="book" aria-label="Menu kniha">
+            <div class="page-spread">
+              <div class="book-page">
+                <img id="menuPageImage" src="" alt="" loading="lazy">
+              </div>
+            </div>
+            <div class="turn-page" id="turnPage" aria-hidden="true">
+              <div class="turn-face front">
+                <img id="turnFrontImage" src="" alt="" loading="lazy">
+              </div>
+              <div class="turn-face back">
+                <img id="turnBackImage" src="" alt="" loading="lazy">
+              </div>
+            </div>
+            <span class="book-hint">Kliknite alebo potiahnite</span>
+            <button class="book-click" id="bookClick" type="button" aria-label="Prejsť na ďalšiu stranu menu"></button>
+            <button class="button button-secondary book-nav prev" id="prevPage" type="button"
+              aria-label="Predchádzajúca strana">‹</button>
+            <button class="button button-dark book-nav next" id="nextPage" type="button"
+              aria-label="Ďalšia strana">›</button>
+          </div>
+        </div>
+
+        <div class="book-controls" aria-label="Ovládanie menu knihy">
+          <span class="page-count" id="pageCount" aria-live="polite">Strana 1 / 12</span>
+        </div>
+        <p class="book-note">Kliknutím na stránku prejdete ďalej.</p>
+      </div>
+    </section>
+
+    <div class="order-modal" id="orderModal" aria-hidden="true">
+      <div class="order-dialog" role="dialog" aria-modal="true" aria-labelledby="orderModalTitle">
+        <h3 id="orderModalTitle">Pridať do objednávky</h3>
+        <p id="orderModalText"></p>
+        <div class="hero-actions">
+          <button class="button button-primary" id="confirmAddToCart" type="button">Pridať</button>
+          <button class="button button-secondary" id="closeOrderModal" type="button">Zavrieť</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPENING HOURS -->
+    <section class="hours-section" id="hodiny">
+      <div class="container">
+        <div class="hours-head reveal">
+          <div>
+            <p class="eyebrow">Kedy máme otvorené</p>
+            <h2 class="section-title">Otváracie hodiny</h2>
+          </div>
+          <p>Príďte na obed, skorú večeru alebo piatkový večer, keď máme otvorené dlhšie.</p>
+        </div>
+        <div class="hours-grid">
+          <article class="hours-card reveal">
+            <span>Pondelok - Štvrtok</span>
+            <strong>10:00 - 21:00</strong>
+          </article>
+          <article class="hours-card highlight reveal">
+            <span>Piatok</span>
+            <strong>10:00 - 22:00</strong>
+          </article>
+          <article class="hours-card reveal">
+            <span>Sobota</span>
+            <strong>11:00 - 20:00</strong>
+          </article>
+          <article class="hours-card reveal">
+            <span>Nedeľa</span>
+            <strong>11:00 - 20:00</strong>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-section" id="kontakt">
+      <div class="container">
+        <div class="contact-card reveal">
+          <div>
+            <p class="eyebrow">Rezervácia a cesta</p>
+            <h2 class="section-title">Kontaktujte nás</h2>
+            <p>Radi vás privítame v reštaurácii Phong Nha vo Vrútkach. Zavolajte nám alebo si otvorte trasu v Google
+              Mapách.</p>
+            <div class="contact-actions">
+              <a class="button button-primary" href="tel:0948919999"
+                aria-label="Zavolať na číslo 0948 919 999">Zavolať</a>
+              <a class="button button-secondary"
+                href="https://www.google.com/maps/search/?api=1&query=Karola%20Kalocsaya%203209%2C%20038%2061%20Vr%C3%BAtky"
+                target="_blank" rel="noopener">Google Maps</a>
+            </div>
+          </div>
+          <div class="contact-details">
+            <div class="detail">
+              <span>Adresa</span>
+              <strong>Karola Kalocsaya 3209<br>038 61 Vrútky</strong>
+            </div>
+            <div class="detail">
+              <span>Telefón</span>
+              <strong>0948 919 999</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img
+          src="https://statics.pancake.vn/web-media-262/cc/53/9b/b9/540c34d1d5d05e9d3cf6e19db9958236f5faf2cbfc550c7e321750d8-w:1983-h:793-l:154093-t:image/jpeg.jpg"
+          alt="Malé logo Phong Nha">
+        <span>Phong Nha</span>
+      </div>
+      <small>© 2026 Phong Nha. Všetky práva vyhradené.</small>
+    </div>
+  </footer>
+
+  <script>
+    const featuredDishes = [
+      {
+        name: "Bun Bo Nam Bo",
+        description: "Tradičné vietnamské jedlo s ryžovými rezancami pripravované na studeno, čerstvá zelenina, hovädzie mäso, cibuľka, podávané s rybacou omáčkou.",
+        image: "https://monngonmoingay.com/wp-content/uploads/2018/08/bun-bo-gio-heo-500-min.jpg"
+      },
+      {
+        name: "Chrumkavá kačica",
+        description: "Chrumkavé kačacie plátky s grilovanou zeleninou a sladkokyslou omáčkou. Príloha: ryža.",
+        image: "https://eu.tastescdn.net/thumbor/pol8Z-a5VMP3FyQyQsUjd9ODrt4=/1050x1050/filters:quality(65):brightness(2):contrast(2):rgb(2,-2,0):sharpen(0.2,0.2,true)/sk/recipe/z1zCdpDqI4XGiBlrnzrW/d2331bb2d1587e1a4bc83e4cb7134e.jpeg"
+      },
+      {
+        name: "Udon rezance",
+        description: "Restované rezance so zeleninou, vajíčkom a chrumkavou cibuľkou. Možnosti: kuracie, hovädzie, krevety, kačacie alebo tofu.",
+        image: "https://www.maggi.sk/sites/default/files/srh_recipes/b4c5a6e18a16daf603b44d157efbd13c.jpg"
+      },
+      {
+        name: "Poke Bowls",
+        description: "Ryža, wakame, edamame, zázvor, mango, uhorka, avokádo, šalát mix, paradajky, sezam a omáčky.",
+        image: "https://somebodyfeedseb.com/wp-content/uploads/2025/05/Square-2025.04.16-Teriyaki-chicken-poke-bowl-9514.jpg"
+      },
+      {
+        name: "Chrumkavá kačica",
+        description: "Marinované kačacie plátky na chrumkavý spôsob s grilovanou zeleninou a sladkokyslou omáčkou. Príloha: ryža.",
+        image: "https://wolt-menu-images-cdn.wolt.com/menu-images/63e2125deab78686cadf6f44/3145fb82-c344-11ed-a04c-169a6bbce149_photoroom_20230315_154848_edit_110828248435169.jpeg"
+      },
+      {
+        name: "Tom Yum",
+        description: "Exotická polievka z kreviet, tom yum pasty, hlivy, šampiňónov, rajčín, jarnej cibuľky a koriandru.",
+        image: "https://statics.pancake.vn/web-media-262/2a/7d/c8/f0/c2eae05aed2c72ad22a11195f946f81dcbae5f9e9abd45ccb073f06f-w:1200-h:1200-l:234861-t:image/jpeg.jpg"
+      }
+    ];
+
+    const menuData = {
+      main_menu: [],
+      lunch_menu: []
+    };
+
+    const menuState = {
+      activeType: "main_menu",
+      query: "",
+      category: "",
+      cart: [],
+      pendingItemId: null
+    };
+
+    function normalizeMenuType(menuType) {
+      return menuType === "lunch_menu" ? "lunch_menu" : "main_menu";
+    }
+
+    function normalizeKey(value) {
+      return String(value || "")
+        .trim()
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+    }
+
+    function getMenuItemKey(item) {
+      if (item.id) {
+        return normalizeKey(item.id);
+      }
+      return [
+        normalizeMenuType(item.menu_type),
+        normalizeKey(item.name),
+        normalizeKey(item.category)
+      ].join("|");
+    }
+
+    function normalizeMenuItem(item) {
+      const menuType = normalizeMenuType(item.menu_type);
+      return {
+        id: item.id || getMenuItemKey({ ...item, menu_type: menuType }),
+        name: item.name || "",
+        description: item.description || "",
+        price: item.price || "",
+        category: item.category || "",
+        allergens: Array.isArray(item.allergens) ? item.allergens : [],
+        image: item.image || "",
+        size: item.size || item.weight || item.volume || item.quantity || "",
+        menu_type: menuType
+      };
+    }
+
+    function upsertMenuItems(items) {
+      items.forEach((rawItem) => {
+        const item = normalizeMenuItem(rawItem);
+        const bucket = menuData[item.menu_type];
+        const key = getMenuItemKey(item);
+        const existingIndex = bucket.findIndex((candidate) => getMenuItemKey(candidate) === key);
+
+        if (existingIndex >= 0) {
+          bucket[existingIndex] = { ...bucket[existingIndex], ...item };
+        } else {
+          bucket.push(item);
+        }
+      });
+
+      renderDataMenu();
+    }
+
+    const lunchMenuItems = [
+      { id: "lunch-pondelok-polievky-bambi", name: "BAMBI", description: "0,2l. jemne pikantný vývar s kuracím mäsom, hubami, kokosovým mliekom, bambusom a tom yum pastou, posypaný jarnou cibuľkou", price: "2,00 €", category: "PONDELOK / POLIEVKY", allergens: ["7"], menu_type: "lunch_menu" },
+      { id: "lunch-pondelok-polievky-ostrokysla-polievka", name: "OSTROKYSLÁ POLIEVKA", description: "0,2l. Hustá polievka s kuracím mäsom, vajíčkom, zeleninou a jarnou cibuľkou.", price: "2,00 €", category: "PONDELOK / POLIEVKY", allergens: ["3", "6"], menu_type: "lunch_menu" },
+      { id: "lunch-pondelok-sushi-losos-menu", name: "LOSOS MENU:", description: "16pcs. 8 ks uramaki (losos, avokádo, philadelphia, majoneza omáčka, sesam). 8 ks maki sake (losos)", price: "9,50 €", category: "PONDELOK / SUSHI", allergens: ["3", "4", "6", "7", "10", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-pondelok-sushi-ebi-menu-shrimp", name: "EBI MENU [shrimp]", description: "16ks. 8ks uramaki (krevety,avokádo, philadelphia, majoneza omáčka,sezam). 8ks maki krevety", price: "9,50 €", category: "PONDELOK / SUSHI", allergens: ["3", "4", "6", "10", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-pondelok-sushi-poke-bolws-vyprazane-kuracie", name: "POKE BOLWS - vyprážané kuracie", description: "ryža,wakame,edamame,zavor,mango,uhorka,avokado,salatmix,paradajky,sezam,mango omáčka,teriaky omáčka,bolws omáčka.", price: "9,90 €", category: "PONDELOK / SUSHI", allergens: ["4", "7", "10", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-pondelok-sushi-poke-bolws-losos", name: "POKE BOLWS - losos", description: "ryža,wakame,edamame,zavor,mango,uhorka,avokado,salatmix,paradajky,sezam,mango omáčka,teriaky omáčka,bolws omáčka.", price: "10,50 €", category: "PONDELOK / SUSHI", allergens: ["4", "7", "10", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-pondelok-sushi-poke-bolws-tofu", name: "POKE BOLWS - tofu", description: "ryža,wakame,edamame,zavor,mango,uhorka,avokado,salatmix,paradajky,sezam,mango omáčka,teriaky omáčka,bolws omáčka.", price: "9,00 €", category: "PONDELOK / SUSHI", allergens: ["4", "7", "10", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-pondelok-sushi-veggie-set", name: "VEGGIE SET", description: "24ks. 8ks maki avocado (avokádo). 8ks maki mango. 8ks maki Uhorka", price: "9,50 €", category: "PONDELOK / SUSHI", allergens: ["11"], menu_type: "lunch_menu" },
+      { id: "lunch-pondelok-teple-jedla-rizoto-kuracie", name: "RIZOTO - Kuracie", description: "450g. Kuracie 90g", price: "7,50 €", category: "PONDELOK / TEPLÉ JEDLÁ", allergens: ["1", "2", "3", "6"], menu_type: "lunch_menu" },
+      { id: "lunch-pondelok-teple-jedla-rizoto-hovadzie", name: "RIZOTO - Hovadzie", description: "450g. Hovadzie 90g", price: "8,00 €", category: "PONDELOK / TEPLÉ JEDLÁ", allergens: ["1", "2", "3", "6"], menu_type: "lunch_menu" },
+      { id: "lunch-pondelok-teple-jedla-rizoto-krevetove", name: "RIZOTO - Krevetove", description: "450g. Krevetove 90g", price: "8,00 €", category: "PONDELOK / TEPLÉ JEDLÁ", allergens: ["1", "2", "3", "6"], menu_type: "lunch_menu" },
+      { id: "lunch-pondelok-teple-jedla-rizoto-kacacie", name: "RIZOTO - Kacacie", description: "450g. Kacacie 90g", price: "8,00 €", category: "PONDELOK / TEPLÉ JEDLÁ", allergens: ["1", "2", "3", "6"], menu_type: "lunch_menu" },
+      { id: "lunch-pondelok-teple-jedla-rizoto-tofu", name: "RIZOTO - Tofu", description: "450g. Tofu 90g", price: "7,50 €", category: "PONDELOK / TEPLÉ JEDLÁ", allergens: ["1", "2", "3", "6"], menu_type: "lunch_menu" },
+      { id: "lunch-pondelok-teple-jedla-chrumkave-kacica", name: "CHRUMKAVÉ KAČICA", description: "200g. Chrumkavé kačacie plátky, grilovaná zelenina,teryaki omáčka,sweet chili omáčka,sezam. príloha : ryža", price: "8,50 €", category: "PONDELOK / TEPLÉ JEDLÁ", allergens: ["1", "3", "6", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-pondelok-teple-jedla-chicken-grill", name: "CHICKEN GRILL", description: "200g. Grilované kuracie prsia(100g) na grilované zelenina,majoneza,teryaki omáčka,sezam. príloha : ryža", price: "8,00 €", category: "PONDELOK / TEPLÉ JEDLÁ", allergens: ["3", "6", "10", "11"], menu_type: "lunch_menu" },
+
+      { id: "lunch-utorok-polievky-tom-yum", name: "TOM YUM", description: "0,2l. Exotická polievka z kreviet, tom yum pasty, hlivy, šampiňónov, rajčín, jarnej cibuľky, koriandru.", price: "2,00 €", category: "UTOROK / POLIEVKY", allergens: ["2"], menu_type: "lunch_menu" },
+      { id: "lunch-utorok-polievky-ostrokysla-polievka", name: "OSTROKYSLÁ POLIEVKA", description: "0,2l. Hustá polievka s kuracím mäsom, vajíčkom, zeleninou a jarnou cibuľkou.", price: "2,00 €", category: "UTOROK / POLIEVKY", allergens: ["3", "6"], menu_type: "lunch_menu" },
+      { id: "lunch-utorok-sushi-losos-menu", name: "LOSOS MENU:", description: "16 pcs. 8 ks uramaki (losos, avokádo, philadelphia, majoneza omáčka, sesam). 8 ks maki sake (losos)", price: "9,50 €", category: "UTOROK / SUSHI", allergens: ["3", "4", "6", "7", "10", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-utorok-sushi-maki-set", name: "MAKI SET", description: "24 pcs. 1 maki losos, 1 maki tuna, 1 maki avocado", price: "9,50 €", category: "UTOROK / SUSHI", allergens: ["3", "4", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-utorok-sushi-poke-bowls-losos-flambovany", name: "POKE BOWLS - losos flambovany", description: "ryža,wakame,edamame,zavor,mango, uhorka,avokado,salatmix,paradajky, sezam,mango omáčka,teriaky omáčka,bolws omáčka.", price: "10,90 €", category: "UTOROK / SUSHI", allergens: ["4", "7", "10", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-utorok-sushi-poke-bowls-kuracie-prsia", name: "POKE BOWLS - kuracie prsia", description: "ryža,wakame,edamame,zavor,mango, uhorka,avokado,salatmix,paradajky, sezam,mango omáčka,teriaky omáčka,bolws omáčka.", price: "9,00 €", category: "UTOROK / SUSHI", allergens: ["4", "7", "10", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-utorok-sushi-poke-bowls-krevety", name: "POKE BOWLS - krevety", description: "ryža,wakame,edamame,zavor,mango, uhorka,avokado,salatmix,paradajky, sezam,mango omáčka,teriaky omáčka,bolws omáčka.", price: "10,90 €", category: "UTOROK / SUSHI", allergens: ["4", "7", "10", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-utorok-sushi-veggie-set", name: "VEGGIE SET", description: "24ks. 8ks maki avocado (avokádo). 8ks maki mango. 8ks uhorka", price: "9,50 €", category: "UTOROK / SUSHI", allergens: ["11"], menu_type: "lunch_menu" },
+      { id: "lunch-utorok-teple-jedla-ryzove-rezance-kuracie", name: "RYŽOVÉ REZANCE - Kuracie", description: "200g. Restované ryžové rezance so zeleninou, vajíčkom a chrumkavou cibuľkou. Kuracie 90g", price: "7,50 €", category: "UTOROK / TEPLÉ JEDLÁ", allergens: ["2", "3", "6"], menu_type: "lunch_menu" },
+      { id: "lunch-utorok-teple-jedla-ryzove-rezance-hovadzie", name: "RYŽOVÉ REZANCE - Hovadzie", description: "200g. Restované ryžové rezance so zeleninou, vajíčkom a chrumkavou cibuľkou. Hovadzie 90g", price: "8,00 €", category: "UTOROK / TEPLÉ JEDLÁ", allergens: ["2", "3", "6"], menu_type: "lunch_menu" },
+      { id: "lunch-utorok-teple-jedla-ryzove-rezance-krevetove", name: "RYŽOVÉ REZANCE - Krevetove", description: "200g. Restované ryžové rezance so zeleninou, vajíčkom a chrumkavou cibuľkou. Krevetove 90g", price: "8,00 €", category: "UTOROK / TEPLÉ JEDLÁ", allergens: ["2", "3", "6"], menu_type: "lunch_menu" },
+      { id: "lunch-utorok-teple-jedla-ryzove-rezance-kacacie", name: "RYŽOVÉ REZANCE - Kacacie", description: "200g. Restované ryžové rezance so zeleninou, vajíčkom a chrumkavou cibuľkou. Kacacie 90g", price: "8,00 €", category: "UTOROK / TEPLÉ JEDLÁ", allergens: ["2", "3", "6"], menu_type: "lunch_menu" },
+      { id: "lunch-utorok-teple-jedla-ryzove-rezance-tofu", name: "RYŽOVÉ REZANCE - Tofu", description: "200g. Restované ryžové rezance so zeleninou, vajíčkom a chrumkavou cibuľkou. Tofu 90g", price: "7,50 €", category: "UTOROK / TEPLÉ JEDLÁ", allergens: ["2", "3", "6"], menu_type: "lunch_menu" },
+      { id: "lunch-utorok-teple-jedla-kura-v-tempura", name: "KURA V TEMPURA", description: "150g. kuracie prsia (120g)v tempura,ladovy salát,teryaki omáčka,majoneza omáčka, sezam. Príloha: ryža", price: "8,00 €", category: "UTOROK / TEPLÉ JEDLÁ", allergens: ["1", "3", "6", "10", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-utorok-teple-jedla-hovadzie-na-stave", name: "HOVÄDZIE NA ŠŤAVE", description: "200g. Hovädzie mäso(100g)na zelenina, mrkva,huby,paprika,cibuľka, brololica. príloha: ryža", price: "8,50 €", category: "UTOROK / TEPLÉ JEDLÁ", allergens: ["11"], menu_type: "lunch_menu" },
+
+      { id: "lunch-streda-polievky-hanojsky-vyvar", name: "HANOJSKÝ VÝVAR", description: "0,3l. vývar na vietnamský spôsob s ryžovými rezancami, kuracím mäsom, koriandrom a jarnou cibuľkou", price: "2,00 €", category: "STREDA / POLIEVKY", allergens: [], menu_type: "lunch_menu" },
+      { id: "lunch-streda-polievky-ostrokysla-polievka", name: "OSTROKYSLÁ POLIEVKA", description: "0,2l. Hustá polievka s kuracím mäsom, vajíčkom, zeleninou a jarnou cibuľkou.", price: "2,00 €", category: "STREDA / POLIEVKY", allergens: ["3", "6"], menu_type: "lunch_menu" },
+      { id: "lunch-streda-sushi-losos-menu", name: "LOSOS MENU:", description: "16 pcs. 8 ks uramaki (losos, avokádo, philadelphia, majonez omáčka, sesam). 8 ks maki sake (losos)", price: "9,50 €", category: "STREDA / SUSHI", allergens: ["3", "4", "6", "7", "10", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-streda-sushi-mix-menu", name: "MIX MENU", description: "18ks. 8ks maki losos, 8ks maki tuna. 1 nigiri losos, 1 Nigiri Avokádo", price: "9,50 €", category: "STREDA / SUSHI", allergens: ["1", "2", "4", "6", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-streda-sushi-poke-bowls-vyprazane-krevety", name: "POKE BOWLS - vyprážané krevety", description: "ryža,wakame,edamame,zavor,mango, uhorka,avokado,salatmix,paradajky, sezam,mango omáčka,teriaky omáčka,bolws omáčka.", price: "10,90 €", category: "STREDA / SUSHI", allergens: ["4", "7", "10", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-streda-sushi-poke-bowls-losos", name: "POKE BOWLS - losos", description: "ryža,wakame,edamame,zavor,mango, uhorka,avokado,salatmix,paradajky, sezam,mango omáčka,teriaky omáčka,bolws omáčka.", price: "10,50 €", category: "STREDA / SUSHI", allergens: ["4", "7", "10", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-streda-sushi-poke-bowls-kuracie-prsia", name: "POKE BOWLS - kuracie prsia", description: "ryža,wakame,edamame,zavor,mango, uhorka,avokado,salatmix,paradajky, sezam,mango omáčka,teriaky omáčka,bolws omáčka.", price: "9,00 €", category: "STREDA / SUSHI", allergens: ["4", "7", "10", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-streda-sushi-veggie-set", name: "VEGGIE SET", description: "24ks. 8ks maki avocado (avokádo). 8ks maki mango. 8ks uhorka", price: "9,50 €", category: "STREDA / SUSHI", allergens: ["11"], menu_type: "lunch_menu" },
+      { id: "lunch-streda-teple-jedla-psenicne-rezance-kuracie", name: "PŠENIČNÉ REZANCE - Kuracie", description: "Restované ryžové rezance so zeleninou, vajíčkom a chrumkavou cibuľkou. Kuracie 90g", price: "7,50 €", category: "STREDA / TEPLÉ JEDLÁ", allergens: ["2", "3", "5", "6"], menu_type: "lunch_menu" },
+      { id: "lunch-streda-teple-jedla-psenicne-rezance-hovadzie", name: "PŠENIČNÉ REZANCE - Hovadzie", description: "Restované ryžové rezance so zeleninou, vajíčkom a chrumkavou cibuľkou. Hovadzie 90g", price: "8,00 €", category: "STREDA / TEPLÉ JEDLÁ", allergens: ["2", "3", "5", "6"], menu_type: "lunch_menu" },
+      { id: "lunch-streda-teple-jedla-psenicne-rezance-krevetove", name: "PŠENIČNÉ REZANCE - Krevetove", description: "Restované ryžové rezance so zeleninou, vajíčkom a chrumkavou cibuľkou. Krevetove 90g", price: "8,00 €", category: "STREDA / TEPLÉ JEDLÁ", allergens: ["2", "3", "5", "6"], menu_type: "lunch_menu" },
+      { id: "lunch-streda-teple-jedla-psenicne-rezance-kacacie", name: "PŠENIČNÉ REZANCE - Kacacie", description: "Restované ryžové rezance so zeleninou, vajíčkom a chrumkavou cibuľkou. Kacacie 90g", price: "8,00 €", category: "STREDA / TEPLÉ JEDLÁ", allergens: ["2", "3", "5", "6"], menu_type: "lunch_menu" },
+      { id: "lunch-streda-teple-jedla-psenicne-rezance-tofu", name: "PŠENIČNÉ REZANCE - Tofu", description: "Restované ryžové rezance so zeleninou, vajíčkom a chrumkavou cibuľkou. Tofu 90g", price: "7,50 €", category: "STREDA / TEPLÉ JEDLÁ", allergens: ["2", "3", "5", "6"], menu_type: "lunch_menu" },
+      { id: "lunch-streda-teple-jedla-thajske-kari", name: "THAJSKÉ KARÍ", description: "250g. Restované kuracie mäso (100g), zelenina a šampiňóny na šťave s pikantným karí korením a kokosovým mliekom. Príloha: ryža", price: "8,00 €", category: "STREDA / TEPLÉ JEDLÁ", allergens: ["7"], menu_type: "lunch_menu" },
+      { id: "lunch-streda-teple-jedla-bun-bo-nam-bo", name: "BUN BO NAM BO", description: "300g. Tradičné vietnamské jedlo s ryžovými rezancami pripravované na studeno, čerstvá zelenina, hovädzie mäso (85g), cibuľka, podávané s rybacou omáčkou.", price: "8,50 €", category: "STREDA / TEPLÉ JEDLÁ", allergens: ["4", "5", "11"], menu_type: "lunch_menu" },
+
+      { id: "lunch-stvrtok-polievky-rybacia", name: "RYBACIA", description: "0,2l. Rybí vývar so zeleninou, šampiňónmi cibuľkou a tom yum pastou.", price: "2,00 €", category: "ŠTVRTOK / POLIEVKY", allergens: ["2", "4"], menu_type: "lunch_menu" },
+      { id: "lunch-stvrtok-polievky-ostrokysla-polievka", name: "OSTROKYSLÁ POLIEVKA", description: "0,2l. Hustá polievka s kuracímäsom, vajíčkom, zeleninou a jarnou cibuľkou.", price: "2,00 €", category: "ŠTVRTOK / POLIEVKY", allergens: [], menu_type: "lunch_menu" },
+      { id: "lunch-stvrtok-sushi-losos-menu", name: "LOSOS MENU:", description: "16 pcs. 8 ks uramaki (losos, avokádo, philadelphia, Flo omáčka, sesam). 8 ks maki sake (losos)", price: "9,50 €", category: "ŠTVRTOK / SUSHI", allergens: ["3", "4", "6", "7", "10", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-stvrtok-sushi-mix-maki", name: "MIX MAKI:", description: "16ks. 8 ks Maki losos vyprazané. 8 ks Maki avokádo", price: "9,50 €", category: "ŠTVRTOK / SUSHI", allergens: ["1", "2", "4", "6", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-stvrtok-sushi-ebi-tempura-menu", name: "EBI TEMPURA MENU", description: "14ks. 8ks uramaki (kreveta v tempure, mango, krabia tyčinka, sezam, mango omáčka), 4ks maki kreveta v tempure, 4ks avocado (avokádo)", price: "9,50 €", category: "ŠTVRTOK / SUSHI", allergens: ["1", "2", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-stvrtok-sushi-veggie-set", name: "VEGGIE SET", description: "24ks. 8ks maki avocado (avokádo). 8ks maki mango. 8ks uhorka", price: "9,50 €", category: "ŠTVRTOK / SUSHI", allergens: ["11"], menu_type: "lunch_menu" },
+      { id: "lunch-stvrtok-teple-jedla-ryzove-rezance-kuracie", name: "RYŽOVÉ REZANCE - Kuracie", description: "200g. Restované ryžové rezance so zeleninou, vajíčkom a chrumkavou cibuľkou. Kuracie 90g", price: "7,50 €", category: "ŠTVRTOK / TEPLÉ JEDLÁ", allergens: ["1", "2", "3", "6", "7", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-stvrtok-teple-jedla-ryzove-rezance-hovadzie", name: "RYŽOVÉ REZANCE - Hovadzie", description: "200g. Restované ryžové rezance so zeleninou, vajíčkom a chrumkavou cibuľkou. Hovadzie 90g", price: "8,00 €", category: "ŠTVRTOK / TEPLÉ JEDLÁ", allergens: ["1", "2", "3", "6", "7", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-stvrtok-teple-jedla-ryzove-rezance-krevetove", name: "RYŽOVÉ REZANCE - Krevetove", description: "200g. Restované ryžové rezance so zeleninou, vajíčkom a chrumkavou cibuľkou. Krevetove 90g", price: "8,00 €", category: "ŠTVRTOK / TEPLÉ JEDLÁ", allergens: ["1", "2", "3", "6", "7", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-stvrtok-teple-jedla-ryzove-rezance-kacacie", name: "RYŽOVÉ REZANCE - Kacacie", description: "200g. Restované ryžové rezance so zeleninou, vajíčkom a chrumkavou cibuľkou. Kacacie 90g", price: "8,00 €", category: "ŠTVRTOK / TEPLÉ JEDLÁ", allergens: ["1", "2", "3", "6", "7", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-stvrtok-teple-jedla-ryzove-rezance-tofu", name: "RYŽOVÉ REZANCE - Tofu", description: "200g. Restované ryžové rezance so zeleninou, vajíčkom a chrumkavou cibuľkou. Tofu 90g", price: "7,50 €", category: "ŠTVRTOK / TEPLÉ JEDLÁ", allergens: ["1", "2", "3", "6", "7", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-stvrtok-teple-jedla-kura-v-tempure", name: "KURA V TEMPURE", description: "150g. Kuracie prsia (120g) v tempure, majonéza teryaki omáčka, sezam, ladovy šalát. Príloha: ryža.", price: "8,00 €", category: "ŠTVRTOK / TEPLÉ JEDLÁ", allergens: ["1", "3", "6", "10", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-stvrtok-teple-jedla-hot-wok", name: "HOT WOK", description: "200g. Jemne pikantné marinované kuracie mäso (120g), šalát, ázijské omáčky. Príloha: ryža.", price: "8,00 €", category: "ŠTVRTOK / TEPLÉ JEDLÁ", allergens: ["1", "2", "3", "6", "10", "11"], menu_type: "lunch_menu" },
+
+      { id: "lunch-piatok-polievky-hanoj-vyvar", name: "HANOJ VÝVAR", description: "0,2l. Kurací vývar, kuracie mäso, ryžové rezance, jarná cibuľka.", price: "2,00 €", category: "PIATOK / POLIEVKY", allergens: [], menu_type: "lunch_menu" },
+      { id: "lunch-piatok-polievky-ostrokysla-polievka", name: "OSTROKYSLÁ POLIEVKA", description: "0,2l. Hustá polievka s kuracím mäsom, vajíčkom, zeleninou a jarnou cibuľkou.", price: "2,00 €", category: "PIATOK / POLIEVKY", allergens: ["3", "6"], menu_type: "lunch_menu" },
+      { id: "lunch-piatok-sushi-sakura-menu", name: "SAKURA MENU", description: "8ks uramaki (losos,avokado,uhorka,philadelphia). 4ks maki losos. 4ks maki uhorka", price: "9,50 €", category: "PIATOK / SUSHI", allergens: ["3", "4", "7", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-piatok-sushi-surimi-menu", name: "SURIMI MENU", description: "16ks. 8ks uramaki ( Surimi, avocado, philadelphia. 8ks maki surimi", price: "9,00 €", category: "PIATOK / SUSHI", allergens: ["1", "3", "4", "6", "10", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-piatok-sushi-poke-bowls-losos-flambovany", name: "POKE BOWLS - losos flambovany", description: "ryža,wakame,edamame,zavor,mango, uhorka, avokado,salatmix,paradajky, sezam, mango omáčka,teriaky omáčka,bolws omáčka.", price: "10,90 €", category: "PIATOK / SUSHI", allergens: ["4", "7", "10", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-piatok-sushi-poke-bowls-kuracie-prsia", name: "POKE BOWLS - kuracie prsia", description: "ryža,wakame,edamame,zavor,mango, uhorka, avokado,salatmix,paradajky, sezam, mango omáčka,teriaky omáčka,bolws omáčka.", price: "9,00 €", category: "PIATOK / SUSHI", allergens: ["4", "7", "10", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-piatok-sushi-poke-bowls-krevety", name: "POKE BOWLS - krevety", description: "ryža,wakame,edamame,zavor,mango, uhorka, avokado,salatmix,paradajky, sezam, mango omáčka,teriaky omáčka,bolws omáčka.", price: "10,90 €", category: "PIATOK / SUSHI", allergens: ["4", "7", "10", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-piatok-sushi-veggie-set", name: "VEGGIE SET", description: "24ks. 8ks maki avocado (avokádo). 8ks maki mango. 8ks uhorka", price: "9,50 €", category: "PIATOK / SUSHI", allergens: ["11"], menu_type: "lunch_menu" },
+      { id: "lunch-piatok-teple-jedla-udon-rezance-kuracie", name: "UDON REZANCE - Kuracie", description: "200g. Restované ryžové rezance so zeleninou, vajíčkom a chrumkavou cibuľkou. Kuracie 90g", price: "7,50 €", category: "PIATOK / TEPLÉ JEDLÁ", allergens: ["1", "2", "3", "6", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-piatok-teple-jedla-udon-rezance-hovadzie", name: "UDON REZANCE - Hovadzie", description: "200g. Restované ryžové rezance so zeleninou, vajíčkom a chrumkavou cibuľkou. Hovadzie 90g", price: "8,00 €", category: "PIATOK / TEPLÉ JEDLÁ", allergens: ["1", "2", "3", "6", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-piatok-teple-jedla-udon-rezance-krevetove", name: "UDON REZANCE - Krevetove", description: "200g. Restované ryžové rezance so zeleninou, vajíčkom a chrumkavou cibuľkou. Krevetove 90g", price: "8,00 €", category: "PIATOK / TEPLÉ JEDLÁ", allergens: ["1", "2", "3", "6", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-piatok-teple-jedla-udon-rezance-kacacie", name: "UDON REZANCE - Kacacie", description: "200g. Restované ryžové rezance so zeleninou, vajíčkom a chrumkavou cibuľkou. Kacacie 90g", price: "8,00 €", category: "PIATOK / TEPLÉ JEDLÁ", allergens: ["1", "2", "3", "6", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-piatok-teple-jedla-udon-rezance-tofu", name: "UDON REZANCE - Tofu", description: "200g. Restované ryžové rezance so zeleninou, vajíčkom a chrumkavou cibuľkou. Tofu 90g", price: "7,50 €", category: "PIATOK / TEPLÉ JEDLÁ", allergens: ["1", "2", "3", "6", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-piatok-teple-jedla-chrumkava-kacica", name: "CHRUMKAVÁ KAČICA", description: "200g. marinované kacacie plátky na chrumkavý spôsob s grilovanou zeleninou a sladkokyslou omáckou. Príloha: ryža.", price: "8,50 €", category: "PIATOK / TEPLÉ JEDLÁ", allergens: ["1", "3", "6", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-piatok-teple-jedla-bun-bo-nam-bo", name: "BUN BO NAM BO", description: "300g. Tradičné vietnamské jedlo s ryžovými rezancami pripravované na studeno, čerstvá zelenina, hovädzie mäso (85g), cibuľka, podávané s rybacou omáčkou.", price: "8,50 €", category: "PIATOK / TEPLÉ JEDLÁ", allergens: ["4", "5", "11"], menu_type: "lunch_menu" },
+
+      { id: "lunch-tyzdenna-ponuka-kuracie-kung-pao", name: "KURACIE KUNG PAO", description: "250g. Kuracie mäso (120g) na šťave so zeleninou, ázijskými hubami, shitake hubami, bambusom a ázijskými omáčkami. Príloha: ryža.", price: "8,00 €", category: "TÝŽDENNÁ PONUKA", allergens: ["2", "4", "5"], menu_type: "lunch_menu" },
+      { id: "lunch-tyzdenna-ponuka-medove-kusky", name: "MEDOVÉ KÚSKY", description: "180g. Vyprázané kuracie maso v cestícku a sladkokyslom náleve, ladový šalát, chilli, zázvor. Príloha: ryža.", price: "8,00 €", category: "TÝŽDENNÁ PONUKA", allergens: ["1", "3", "7", "11"], menu_type: "lunch_menu" },
+      { id: "lunch-tyzdenna-ponuka-chrumkave-kura", name: "CHRUMKAVÉ KURA", description: "250g. Kuracie stehno nakrájané na plátky, pripravené na chrumkavý spôsob, podávané so zeleninou a s teriyaki omáčkou. Príloha: ryža.", price: "8,00 €", category: "TÝŽDENNÁ PONUKA", allergens: ["1", "3", "6", "7", "11"], menu_type: "lunch_menu" }
+    ];
+
+    const mainMenuItems = [
+      { id: "main-predjedla-vege-chicken-gyoza", name: "Vege / Chicken Gyoza", description: "5ks. taštičky plnené kuracím mäsom alebo zeleninou, podávané so sweet chilli omáčkou. vegetariánske / kuracie", price: "5,00 €", category: "PREDJEDLÁ", allergens: ["1", "3", "6", "11"], menu_type: "main_menu" },
+      { id: "main-predjedla-jarne-zavitky", name: "Jarné závitky", description: "3ks. jarné závitky s mletým bravčovým mäsom, zeleninou, ázijskými hubami, sklenými rezancami a vajíčkom, obalené v ryžovom obale, podávané so sweet chilli omáčkou", price: "5,00 €", category: "PREDJEDLÁ", allergens: ["1", "2", "3", "4", "11"], menu_type: "main_menu" },
+      { id: "main-predjedla-vegetarian-rolls", name: "Vegetarian Rolls", description: "6ks. vegetariánske závitky vo fazuľovom obale, podávané so sweet chilli omáčkou", price: "5,00 €", category: "PREDJEDLÁ", allergens: ["1", "2", "3", "11"], menu_type: "main_menu" },
+      { id: "main-polievky-ostrokysla-polievka", name: "Ostrokyslá polievka", description: "0,2l. hustá pikantná polievka s kuracím mäsom, vajíčkom a jarnou cibuľkou", price: "2,50 €", category: "POLIEVKY", allergens: ["3", "6"], menu_type: "main_menu" },
+      { id: "main-polievky-tom-yum", name: "Tom Yum", description: "0,4l. jemne pikantná polievka s krevetami, hubami, rajčinami, tom yum pastou, jarnou cibuľkou a koriandrom, odporúčame dochutiť kokosovým mliekom", price: "7,00 €", category: "POLIEVKY", allergens: ["2", "4"], menu_type: "main_menu" },
+      { id: "main-polievky-rybacia-polievka", name: "Rybacia polievka", description: "0,4l. vývar s lososom, zeleninou, hubami, cuketou, kôprom a jarnou cibuľkou", price: "6,50 €", category: "POLIEVKY", allergens: ["4"], menu_type: "main_menu" },
+      { id: "main-polievky-miso", name: "Miso", description: "0,2l. pasta zo sóje, dashi, tofu, riasy, cuketa, jarná cibuľka", price: "3,00 €", category: "POLIEVKY", allergens: ["6"], menu_type: "main_menu" },
+      { id: "main-polievky-hanojsky-vyvar", name: "Hanojský vývar", description: "0,3l. vývar na vietnamský spôsob s ryžovými rezancami, kuracím mäsom, koriandrom a jarnou cibuľkou", price: "3,00 €", category: "POLIEVKY", allergens: [], menu_type: "main_menu" },
+      { id: "main-polievky-bambi", name: "Bambi", description: "0,4l. jemne pikantný vývar s kuracím mäsom, hubami, kokosovým mliekom, bambusom a tom yum pastou, posypaný jarnou cibuľkou", price: "5,00 €", category: "POLIEVKY", allergens: ["7"], menu_type: "main_menu" },
+
+      { id: "main-ryby-morske-jedla-salmon-teriyaki", name: "Salmon Teriyaki", description: "150g. losos 100g na restovanej zelenine so sezamom, podávaný s teriyaki omáčkou", price: "8,00 €", category: "RYBY A MORSKÉ JEDLÁ", allergens: ["4", "6", "11"], menu_type: "main_menu" },
+      { id: "main-ryby-morske-jedla-ebi-tempura", name: "Ebi Tempura", description: "110g. Krevety 5kus vyprážané, teriaky omáčka, majoneza, sezam, uhorka.", price: "8,00 €", category: "RYBY A MORSKÉ JEDLÁ", allergens: ["1", "2", "3", "6", "10", "11"], menu_type: "main_menu" },
+      { id: "main-rezance-hovadzie", name: "Hovädzie", description: "300g. hovädzie mäso (100g), zelenina, cibuľa, vajíčko, rezance. Na výber: Pad Thai + 1€, bezlepkové ryžové, pšeničné, udon.", price: "8,00 €", category: "REZANCE", allergens: ["1", "3"], menu_type: "main_menu" },
+      { id: "main-rezance-krevetove", name: "Krevetové", description: "300g. krevety (90g), zelenina, cibuľa, vajíčko, rezance. Na výber: Pad Thai + 1€, bezlepkové ryžové, pšeničné, udon.", price: "8,00 €", category: "REZANCE", allergens: ["1", "2", "3"], menu_type: "main_menu" },
+      { id: "main-rezance-kuracie", name: "Kuracie", description: "300g. kuracie mäso (100g), zelenina, cibuľa, vajíčko, rezance. Na výber: Pad Thai + 1€, bezlepkové ryžové, pšeničné, udon.", price: "7,50 €", category: "REZANCE", allergens: ["1", "3"], menu_type: "main_menu" },
+      { id: "main-rezance-vege", name: "Vege", description: "300g. tofu (100g), zelenina, cibuľa, vajíčko, rezance. Na výber: Pad Thai + 1€, bezlepkové ryžové, pšeničné, udon.", price: "7,50 €", category: "REZANCE", allergens: ["1", "3", "6"], menu_type: "main_menu" },
+      { id: "main-prilohy-jazminova-ryza", name: "Jazmínová ryža", description: "150g", price: "2,00 €", category: "PRÍLOHY", allergens: [], menu_type: "main_menu" },
+      { id: "main-prilohy-opekana-ryza", name: "Opekaná ryža", description: "150g", price: "3,00 €", category: "PRÍLOHY", allergens: ["3"], menu_type: "main_menu" },
+      { id: "main-prilohy-hranolky", name: "Hranolky", description: "150g", price: "2,00 €", category: "PRÍLOHY", allergens: [], menu_type: "main_menu" },
+      { id: "main-prilohy-rezance", name: "Rezance", description: "150g. ryžové, pšeničné", price: "3,00 €", category: "PRÍLOHY", allergens: ["1", "3"], menu_type: "main_menu" },
+      { id: "main-salaty-kuraci-salat", name: "Kurací šalát", description: "180g. kuracie mäso (90g), šalát, paprika, sezam, rajčiny, omáčka", price: "8,00 €", category: "ŠALÁTY", allergens: ["3", "6", "10", "11"], menu_type: "main_menu" },
+      { id: "main-salaty-deli-salmon", name: "Deli Salmon", description: "220g. zeleninový šalát s kúskami grilovaného lososa (80g), rajčinami, avokádom, zeleninou, korením, sakura omáčkou, majonézou, sezamom", price: "9,90 €", category: "ŠALÁTY", allergens: ["3", "4", "6", "10", "11"], menu_type: "main_menu" },
+      { id: "main-salaty-avokadovy-sen", name: "Avokádový sen", description: "150g. fit šalát, cherry rajčinky, avokádo, paprika, omáčka, sezam", price: "6,00 €", category: "ŠALÁTY", allergens: ["3", "6", "7", "10", "11"], menu_type: "main_menu" },
+      { id: "main-salaty-wakame", name: "Wakame", description: "100g. wakame riasy so sezamom", price: "4,00 €", category: "ŠALÁTY", allergens: ["11"], menu_type: "main_menu" },
+
+      { id: "main-sushi-set-salmon-set", name: "Salmon set/ lososový set:", description: "1 insideout roll (8ks/pcs). 1 Futomaki tempural roll (6ks/pcs). Nigiri salmon (2ks/pcs). Sashimi salmon (3ks/pcs)", price: "22,00 €", category: "Sushi Set", allergens: ["1", "3", "4", "7", "11"], menu_type: "main_menu" },
+      { id: "main-sushi-set-tuna-set", name: "Tuna Set:", description: "1 insideout roll Tuna (8ks/pcs). 1 Futomaki tempural roll Tuna (6ks/pcs). Nigiri tuna (2ks/pcs). Sashimi tuna (3ks/pcs)", price: "22,00 €", category: "Sushi Set", allergens: ["1", "3", "4", "7", "11"], menu_type: "main_menu" },
+      { id: "main-sushi-set-shrimp-set", name: "Shrimp Set:", description: "1 insideout roll (8ks/pcs). 1 Futomaki tempural roll (6ks/pcs). Nigiri krevety (2ks/pcs)", price: "19,00 €", category: "Sushi Set", allergens: ["1", "2", "7", "11"], menu_type: "main_menu" },
+      { id: "main-sushi-set-veggie-set", name: "Veggie Set:", description: "1 insideout roll veggie (8ks/pcs). 1 Futomaki tempural roll vegi (6ks/pcs). Nigiri avocado (2ks/pcs)", price: "15,00 €", category: "Sushi Set", allergens: ["1", "7", "11"], menu_type: "main_menu" },
+      { id: "main-sushi-set-mix-set", name: "Mix Set", description: "1 insideout roll (8ks/pcs). 1 Futomaki tempural roll (6ks/pcs). Nigiri (2ks/pcs). Sashimi (3ks/pcs)", price: "20,00 €", category: "Sushi Set", allergens: ["1", "2", "3", "4", "7", "11"], menu_type: "main_menu" },
+      { id: "main-velke-polievky-pho", name: "Pho", description: "0,7l. vývar, rezance,koriander,jarná cibuľka, limetka,sriracha cili,kyslé bambusové výhonky. pho ga s kuracím mäso/ pho bo s hovädzie mäso/ pho Cha s mleté bravčové mäso/ pho chay vege s Tofu", price: "8,50 €", category: "VEĽKÉ POLIEVKY", allergens: ["4"], menu_type: "main_menu" },
+      { id: "main-velke-polievky-ramen", name: "Ramen", description: "0,7l. Psenicne rezance,cibuľka, vajicko a zelenina,koriander. hovädzie mäso(beef)/ Krevety(Shrimp) /kuracie maso(chicken) /vege Tofu.", price: "8,00 €", category: "VEĽKÉ POLIEVKY", allergens: ["1", "2", "3", "14"], menu_type: "main_menu" },
+
+      { id: "main-hlavne-jedla-kung-pao", name: "Kung Pao", description: "150g. kuracie prsia (90g) na šťave, zelenina, huby. kuracie mäso / tofu", price: "6,00 €", category: "HLAVNÉ JEDLÁ", allergens: ["5", "6"], menu_type: "main_menu" },
+      { id: "main-hlavne-jedla-thajske-kari", name: "Thajské karí", description: "150g. kuracie prsia (90g) pikantné, zelenina, šampiňóny, kokosové mlieko, karí korenie/ krevety + 1€ (60g)/ Tofu", price: "6,00 €", category: "HLAVNÉ JEDLÁ", allergens: ["7"], menu_type: "main_menu" },
+      { id: "main-hlavne-jedla-kura-v-tempure", name: "Kura v tempure", description: "150g. vyprážané kuracie prsia,japonská majonéza, sezam,teryaki omacka.", price: "6,00 €", category: "HLAVNÉ JEDLÁ", allergens: ["1", "3", "6", "10", "11"], menu_type: "main_menu" },
+      { id: "main-hlavne-jedla-vyprazany-syr", name: "Vyprážaný syr", description: "150g. vyprážaný syr (150g) v trojobale (2ks)", price: "5,00 €", category: "HLAVNÉ JEDLÁ", allergens: ["1", "3", "7"], menu_type: "main_menu" },
+      { id: "main-hlavne-jedla-bun-bo-nam-bo", name: "Bun Bo Nam Bo", description: "300g. ryžové rezance, čerstvá zelenina, arašidy, rybacia omáčka, mango, podávané na studeno. kuracie mäso / hovädzie mäso / mleté bravčové mäso", price: "8,50 €", category: "HLAVNÉ JEDLÁ", allergens: ["4", "5", "11"], menu_type: "main_menu" },
+      { id: "main-hlavne-jedla-hovadzie-maso-na-stave", name: "Hovädzie mäso na šťave", description: "200g. hovädzie mäso (100g) na šťave, huby, mungo, cibuľka, zelenina", price: "7,00 €", category: "HLAVNÉ JEDLÁ", allergens: ["11"], menu_type: "main_menu" },
+      { id: "main-hlavne-jedla-chrumkave-kura", name: "Chrumkavé kura", description: "120g. Kuracie stehno nakrájané na plátky, grilovaná zelenina, teriyaki omáčka, sweet chili omacka", price: "6,00 €", category: "HLAVNÉ JEDLÁ", allergens: ["1", "3", "6", "7", "11"], menu_type: "main_menu" },
+      { id: "main-hlavne-jedla-kacica", name: "Kačica", description: "200g. chrumkavé kačacie plátky, grilovaná zelenina, teriyaki omáčka, sweet chili omacka", price: "7,00 €", category: "HLAVNÉ JEDLÁ", allergens: ["1", "3", "6", "11"], menu_type: "main_menu" },
+      { id: "main-hlavne-jedla-hot-wok", name: "Hot Wok", description: "150g. Restované kuracie mäso na woku,ladovy salat, majoneza,teryaki omacka,sezam", price: "6,00 €", category: "HLAVNÉ JEDLÁ", allergens: ["3", "6", "10", "11"], menu_type: "main_menu" },
+      { id: "main-hlavne-jedla-chicken-grill", name: "Chicken Grill", description: "150g. grilované kuracie prsia na špízoch, grilovaná zelenina, japonská majonéza, Teryaki omacka", price: "6,00 €", category: "HLAVNÉ JEDLÁ", allergens: ["3", "6", "10", "11"], menu_type: "main_menu" },
+      { id: "main-hlavne-jedla-kuracie-kusky", name: "Kuracie Kúsky", description: "180g. vyprázané kuracie maso s ladový salát k tomu sweet chili omacka", price: "6,00 €", category: "HLAVNÉ JEDLÁ", allergens: ["1", "3", "7", "11"], menu_type: "main_menu" },
+      { id: "main-hlavne-jedla-medove-kusky", name: "MeDové Kúsky", description: "180g. Vyprázané kuracie maso v cestícku a sladkokyslom náleve, ladový salát, chilli, zázvor", price: "6,00 €", category: "HLAVNÉ JEDLÁ", allergens: ["1", "3", "7", "11"], menu_type: "main_menu" },
+
+      { id: "main-futomaki-hokai", name: "Hokai:", description: "Losos + avokádo + uhorka + mango + syr philadelphia + sezam + majonéza + teriyaki omáčka/ salmon + avocado + cucumber + mango + philadelphia cheese + sesame + mayonnaise + teriyaki sauce", price: "9,00 €", category: "Futomaki", allergens: ["1", "4", "7", "11"], menu_type: "main_menu" },
+      { id: "main-futomaki-hiroshima", name: "Hiroshima:", description: "Pikantný losos +s kaviár/ spicy salmon + caviar", price: "9,50 €", category: "Futomaki", allergens: ["3", "4", "7"], menu_type: "main_menu" },
+      { id: "main-futomaki-tokyo", name: "Tokyo:", description: "Tuniak + avokádo + mango + syr philadelphia + majonéza + teriyaki omáčka/ tuna + avocado + mango + philadelphia cheese + mayonnaise + teriyaki sauce", price: "9,00 €", category: "Futomaki", allergens: ["1", "4", "7", "11"], menu_type: "main_menu" },
+      { id: "main-futomaki-osaka", name: "Osaka:", description: "Kreveta + avokádo + mango + syr philadelphia + majonéza + mango omáčka/ ebi + avocado + mango + philadelphia cheese + mayonnaise + mango sauce", price: "9,00 €", category: "Futomaki", allergens: ["2", "7", "11"], menu_type: "main_menu" },
+      { id: "main-futomaki-milky-way", name: "Milky Way:", description: "Tempurovaná kreveta + avokádo + syr philadelphia + majonéza + teriyaki omáčka/ Ebi tempura + avocado + philadelphia cheese + mayonnaise + teriyaki sauce", price: "9,50 €", category: "Futomaki", allergens: ["1", "2", "7", "4", "11"], menu_type: "main_menu" },
+      { id: "main-futomaki-cali", name: "Cali:", description: "Krabia tyčinka + avokádo + syr philadelphia + majonéza + teriyaki omáčka/ crab stick + avocado + philadelphia cheese + mayonnaise + teriyaki sauce", price: "8,00 €", category: "Futomaki", allergens: ["1", "2", "4", "7", "11"], menu_type: "main_menu" },
+      { id: "main-futomaki-sunshine", name: "Sunshine:", description: "Mango + uhorka + avocado + špatgľa + syr philadelphia + majonéza + teriyaki omáčka/ mango + cucumber + avocado + asparagus + philadelphia cheese + mayonnaise + teriyaki sauce", price: "8,50 €", category: "Futomaki", allergens: ["1", "7", "11"], menu_type: "main_menu" },
+
+      { id: "main-sushi-combo-4-5", name: "Sushi kombo pre 4-5 os./ sushi combo for 4-5 per.", description: "4 maki (32ks/pcs). 2 Insideout (16ks/pcs). 2 Special roll (16ks/pcs). 3 Futomaki tempura roll (18ks/pcs). Nigiri (8ks/pcs). Sashimi (10ks/pcs)", price: "99,50 €", category: "Sushi Combo", allergens: ["1", "2", "3", "4", "7", "11"], menu_type: "main_menu" },
+      { id: "main-sushi-combo-3", name: "Sushi kombo pre 3 os./ sushi combo for 3 per.", description: "3 maki (24ks/pcs). 2 Insideout (18ks/pcs). 1 Special roll (8ks/pcs). 2 Futomaki tempura roll (16ks/pcs). Nigiri (6ks/pcs). Sashimi (6ks/pcs)", price: "61,90 €", category: "Sushi Combo", allergens: ["1", "2", "3", "4", "7", "11"], menu_type: "main_menu" },
+      { id: "main-sushi-combo-2", name: "Sushi kombo pre 2 os./ sushi combo for 2 per.", description: "2 maki (16ks/pcs). 1 Insideout (8ks/pcs). 1 Special roll (8ks/pcs). 1 Futomaki tempura roll (6ks/pcs). Nigiri (4ks/pcs). Sashimi (4ks/pcs)", price: "45,50 €", category: "Sushi Combo", allergens: ["1", "2", "3", "4", "7", "11"], menu_type: "main_menu" },
+
+      { id: "main-specia-roll-moon-roll", name: "Moon roll:", description: "Inside: Avokádo + losos + syr philadelphia/ avocado + salmon + philadelphia cheese. Outside: Flambovaný losos + kaviár + majonéza/ flambéed salmon + caviar + mayonnaise", price: "12,50 €", category: "Specia roll", allergens: ["3", "4", "7"], menu_type: "main_menu" },
+      { id: "main-specia-roll-asparagus-roll", name: "Asparagus roll:", description: "Inside: Špargľa + losos + syr philadelphia+ asparagus + salmon + philadelphia cheese. Outside: Avocado + japan maionejo + kaviar", price: "11,50 €", category: "Specia roll", allergens: ["3", "4", "7"], menu_type: "main_menu" },
+      { id: "main-specia-roll-aurora-roll", name: "Aurora roll:", description: "Inside: Uhorka+ losos + syr philadelphia/ cucumber + salmon + philadelphia cheese. Outside: Avocado + maionejo sauce + sesam", price: "11,50 €", category: "Specia roll", allergens: ["4", "7", "11"], menu_type: "main_menu" },
+      { id: "main-specia-roll-maguro-roll", name: "Maguro roll:", description: "Inside: Uhorka + tuniak + syr philadelphia/ cucumber + tuna + philadelphia cheese. Outside: Losos + majonéza + kaviár/ salmon + mayonnaise + caviar", price: "13,50 €", category: "Specia roll", allergens: ["3", "4", "7"], menu_type: "main_menu" },
+      { id: "main-specia-roll-phong-nha-roll", name: "Phong Nha roll:", description: "Inside: Tempurovaná kkreveta + avokádo + syr philadelphia/ Ebi tempura + avocoado + philadelphia cheese. Outside: Flambovaný losos + teriyaki omáčka + sezam/ flambéed slamon + teriyaki sauce + sesame", price: "14,50 €", category: "Specia roll", allergens: ["1", "2", "7", "11"], menu_type: "main_menu" },
+      { id: "main-specia-roll-blue-roll", name: "Blue roll:", description: "Inside: Tempurovaná špargľa + uhorka + mango + syr philadelphia/ tempura asparagus + cucumber + mango + philadelphia cheese. Outside: Avokádo + teriyaki omáčka + sezam/ avocado + teriyaki sauce + sesame", price: "11,50 €", category: "Specia roll", allergens: ["1", "7", "11"], menu_type: "main_menu" },
+      { id: "main-specia-roll-green-roll", name: "Green roll:", description: "Inside: Tofu tempurovaná+uhorka+krabia tycinka. Outside: Avokádo+majozeza+sezam+teryaki omacka", price: "11,50 €", category: "Specia roll", allergens: ["1", "7", "11"], menu_type: "main_menu" },
+      { id: "main-specia-roll-dragon-roll", name: "Dragon roll:", description: "Inside: Kreveta + avokádo + uhorka + syr philadelphia/ Ebi + avocado + cucumber + philadelphia cheese. Outside: Lososové sashimi + majonéza + kaviár + sezam/ salmon sashimi ontop + mayonnaise + caviar + sesame", price: "13,50 €", category: "Specia roll", allergens: ["2", "3", "4", "7"], menu_type: "main_menu" },
+      { id: "main-specia-roll-lyna-roll", name: "Lyna roll", description: "Špeciálny nápad šéfkuchára / special sushi chef idea", price: "15,00 €", category: "Specia roll", allergens: [], menu_type: "main_menu" },
+
+      { id: "main-sushi-rolls-tuna-t1", name: "Tuna roll T1", description: "(8ks/pcs). Tuniak + uhorka + kaviár + majoneza + avokado / tuna + cucumber + caviar + wasabi sauce", price: "9,50 €", category: "Sushi rolls / Tuna roll", allergens: ["1", "3", "4", "11"], menu_type: "main_menu" },
+      { id: "main-sushi-rolls-tuna-t2", name: "Tuna roll T2", description: "(8ks/pcs). Pikantný tuniak (kaviár + cibuľka + chilli omáčka + majonéza + sójová omáčka kikoman) / spicy tuna (caviar + onion + chilli sauce + mayonnaise + soy sauce kikoman)", price: "9,50 €", category: "Sushi rolls / Tuna roll", allergens: ["3", "4", "7", "11"], menu_type: "main_menu" },
+      { id: "main-sushi-rolls-ebi-e1", name: "Ebi roll E1", description: "(8ks/pcs). Kreveta + avokádo + syr philadelphia + sezam + majonéza / ebi + avocoado + philadelphia cheese + sesame + mayonnaise", price: "9,50 €", category: "Sushi rolls / Ebi roll", allergens: ["2", "7", "11"], menu_type: "main_menu" },
+      { id: "main-sushi-rolls-ebi-e2", name: "Ebi roll E2", description: "(8ks/pcs). Kreveta + avokádo + uhorka + syr philadelphia + sezam + majonéza / ebi + avocado + cucumber + philadelphia cheese + sesame + mayonnaise", price: "9,50 €", category: "Sushi rolls / Ebi roll", allergens: ["2", "7", "11"], menu_type: "main_menu" },
+      { id: "main-sushi-rolls-ebi-e3", name: "Ebi roll E3", description: "(8ks/pcs). Tempurovaná kreveta + avokádo + syr philadelphia + sezam + teiyaki omáčka / ebi tempura + avocado + philadelphia cheese + sesame + teriyaki sauce", price: "9,50 €", category: "Sushi rolls / Ebi roll", allergens: ["1", "2", "7", "11"], menu_type: "main_menu" },
+      { id: "main-sushi-rolls-surimi-roll", name: "Surimi roll", description: "(8ks/pcs). Krabia tyčinka + avokádo + syr philadelphia + sezam + majonéza / crab stick + avocado + philadelphia cheese + sesame + mayonnaise", price: "8,00 €", category: "Sushi rolls / Surimi roll", allergens: ["1", "2", "4", "7", "11"], menu_type: "main_menu" },
+      { id: "main-sushi-rolls-vegi-v1", name: "Vegi roll V1", description: "(8ks/pcs). Uhorka + avokádo + mango + syr philadelphia + sezam + majonéza / cucumber + avocado + mango + philadelphia cheese + sesame + mayonnaise", price: "9,00 €", category: "Sushi rolls / Vegi roll", allergens: ["7", "11"], menu_type: "main_menu" },
+      { id: "main-sushi-rolls-vegi-v2", name: "Vegi roll V2", description: "(8ks/pcs). Avokádo + rukola + syr philadelphia + sezam + majonéza / avocado + rucola + philadelphia cheese + sesame + mayonnaise", price: "9,00 €", category: "Sushi rolls / Vegi roll", allergens: ["7", "11"], menu_type: "main_menu" },
+      { id: "main-sushi-rolls-vegi-v3", name: "Vegi roll V3", description: "(8ks/pcs). Avokádo + rukola + špargľa + syr philadelphia + sezam + majonéza / avocado + rucola + asparagus + philadelphia cheese + sesame + mayonnaise", price: "9,00 €", category: "Sushi rolls / Vegi roll", allergens: ["7", "11"], menu_type: "main_menu" },
+      { id: "main-sushi-rolls-mix-roll", name: "Mix roll", description: "(8ks/pcs). Tempurovaná kreveta + losos + avokado + teryaki Omacka + majneza + sezam + philadelphiaa cheese", price: "9,50 €", category: "Sushi rolls / Mix roll", allergens: ["1", "3", "4", "7", "11"], menu_type: "main_menu" },
+
+      { id: "main-poke-bowls-losos", name: "Losos Bowls", description: "Ryza sushi, wakame, edamame, zavor, mango, uhorka, avokado, salat mix, paradajky, sezam, mango omacka, teriaky omacka, bolws omacka.", price: "10,90 €", category: "POKE BOWLS", allergens: [], menu_type: "main_menu" },
+      { id: "main-poke-bowls-losos-flambovany", name: "Losos Flambovany Bowls", description: "Ryza sushi, wakame, edamame, zavor, mango, uhorka, avokado, salat mix, paradajky, sezam, mango omacka, teriaky omacka, bolws omacka.", price: "10,90 €", category: "POKE BOWLS", allergens: [], menu_type: "main_menu" },
+      { id: "main-poke-bowls-tuna", name: "Tuna Bowls", description: "Ryza sushi, wakame, edamame, zavor, mango, uhorka, avokado, salat mix, paradajky, sezam, mango omacka, teriaky omacka, bolws omacka.", price: "10,90 €", category: "POKE BOWLS", allergens: [], menu_type: "main_menu" },
+      { id: "main-poke-bowls-kuracie", name: "Kuracie Bowls", description: "Ryza sushi, wakame, edamame, zavor, mango, uhorka, avokado, salat mix, paradajky, sezam, mango omacka, teriaky omacka, bolws omacka.", price: "9,00 €", category: "POKE BOWLS", allergens: [], menu_type: "main_menu" },
+      { id: "main-poke-bowls-kuracie-vybrazane", name: "Kuracie vybrazane Bowls", description: "Ryza sushi, wakame, edamame, zavor, mango, uhorka, avokado, salat mix, paradajky, sezam, mango omacka, teriaky omacka, bolws omacka.", price: "10,00 €", category: "POKE BOWLS", allergens: [], menu_type: "main_menu" },
+      { id: "main-poke-bowls-krevety", name: "Krevety Bowls", description: "Ryza sushi, wakame, edamame, zavor, mango, uhorka, avokado, salat mix, paradajky, sezam, mango omacka, teriaky omacka, bolws omacka.", price: "10,90 €", category: "POKE BOWLS", allergens: [], menu_type: "main_menu" },
+      { id: "main-poke-bowls-krevety-vybrazane", name: "Krevety vybrazane Bowls", description: "Ryza sushi, wakame, edamame, zavor, mango, uhorka, avokado, salat mix, paradajky, sezam, mango omacka, teriaky omacka, bolws omacka.", price: "10,90 €", category: "POKE BOWLS", allergens: [], menu_type: "main_menu" },
+      { id: "main-poke-bowls-tofu", name: "Tofu Bowls", description: "Ryza sushi, wakame, edamame, zavor, mango, uhorka, avokado, salat mix, paradajky, sezam, mango omacka, teriaky omacka, bolws omacka.", price: "9,00 €", category: "POKE BOWLS", allergens: [], menu_type: "main_menu" },
+      { id: "main-poke-bowls-hovadzie", name: "Hovädzie Bowls", description: "Ryza sushi, wakame, edamame, zavor, mango, uhorka, avokado, salat mix, paradajky, sezam, mango omacka, teriaky omacka, bolws omacka.", price: "10,00 €", category: "POKE BOWLS", allergens: [], menu_type: "main_menu" }
+    ];
+
+    // MENU IMAGE LINKS - EDIT HERE
+    const menuPages = [
+      {
+        page: 1,
+        title: "Menu page 1",
+        image: "https://statics.pancake.vn/web-media-262/45/63/65/f2/5dc8ad3cae3011ebd8338e43deafd5e64fdfd23944b47a18c6706511-w:1420-h:2048-l:389898-t:image/jpeg.jpg"
+      },
+      {
+        page: 2,
+        title: "Menu page 2",
+        image: "https://statics.pancake.vn/web-media-262/bd/46/c4/9f/707c91fbac58b1ba65df5c9bc91274a34c55de3e3262ee14377b3946-w:1420-h:2048-l:370422-t:image/jpeg.jpg"
+      },
+      {
+        page: 3,
+        title: "Menu page 3",
+        image: "https://statics.pancake.vn/web-media-262/42/75/e4/cf/0102b8bd2ff266d0ddc492bdeb61d7ce0acf03759709c5d1a20b9458-w:1420-h:2048-l:379246-t:image/jpeg.jpg"
+      },
+      {
+        page: 4,
+        title: "Menu page 4",
+        image: "https://statics.pancake.vn/web-media-262/d8/25/13/a2/2b974e1283ede53ad87b00750b4a88ce212264764c25a9f3f156db2e-w:1420-h:2048-l:359962-t:image/jpeg.jpg"
+      },
+      {
+        page: 5,
+        title: "Menu page 5",
+        image: "https://statics.pancake.vn/web-media-262/2e/d7/74/4b/3ee821095558b7e1d9e9905f176c9282eaf5fac2fb72acd6e730357c-w:1420-h:2048-l:379043-t:image/jpeg.jpg"
+      },
+      {
+        page: 6,
+        title: "Menu page 6",
+        image: "https://statics.pancake.vn/web-media-262/45/63/65/f2/5dc8ad3cae3011ebd8338e43deafd5e64fdfd23944b47a18c6706511-w:1420-h:2048-l:389898-t:image/jpeg.jpg"
+      }
+    ];
+
+    // MENU BOOK LOGIC
+    const menuPageImage = document.getElementById("menuPageImage");
+    const turnPage = document.getElementById("turnPage");
+    const turnFrontImage = document.getElementById("turnFrontImage");
+    const turnBackImage = document.getElementById("turnBackImage");
+    const pageCount = document.getElementById("pageCount");
+    const prevPage = document.getElementById("prevPage");
+    const nextPage = document.getElementById("nextPage");
+    const bookClick = document.getElementById("bookClick");
+    const featuredDishesGrid = document.getElementById("featuredDishesGrid");
+    const menuList = document.getElementById("menuList");
+    const menuSection = document.getElementById("menu");
+    const menuCategoryShell = document.getElementById("menuCategoryShell");
+    const menuSearch = document.getElementById("menuSearch");
+    const menuCategoryFilter = document.getElementById("menuCategoryFilter");
+    const menuSummary = document.getElementById("menuSummary");
+    const menuPanel = document.querySelector(".menu-panel");
+    const menuTabs = document.querySelectorAll("[data-menu-tab]");
+    const cartList = document.getElementById("cartList");
+    const sendWhatsAppOrder = document.getElementById("sendWhatsAppOrder");
+    const cartTotal = document.getElementById("cartTotal");
+    const cartToolbarCount = document.getElementById("cartToolbarCount");
+    const orderNote = document.getElementById("orderNote");
+    const orderError = document.getElementById("orderError");
+    const orderCard = document.getElementById("orderCard");
+    const openCartSheet = document.getElementById("openCartSheet");
+    const closeCartSheet = document.getElementById("closeCartSheet");
+    const cartBackdrop = document.getElementById("cartBackdrop");
+    const orderModal = document.getElementById("orderModal");
+    const orderModalTitle = document.getElementById("orderModalTitle");
+    const orderModalText = document.getElementById("orderModalText");
+    const confirmAddToCart = document.getElementById("confirmAddToCart");
+    const closeOrderModal = document.getElementById("closeOrderModal");
+    const dishAccents = ["#ff9d3d", "#ff4faf", "#45d7ff", "#ba65ff", "#ffd75a", "#d9ad55"];
+    let currentIndex = 0;
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let ignoreNextClick = false;
+
+    function renderFeaturedDishes() {
+      if (!featuredDishesGrid) {
+        return;
+      }
+
+      featuredDishesGrid.innerHTML = featuredDishes.map((dish, index) => {
+        const accent = dishAccents[index % dishAccents.length];
+        const imageStyle = dish.image
+          ? "background-image: linear-gradient(180deg, rgba(13,13,12,0.02), rgba(13,13,12,0.28)), url('" + dish.image.replace(/'/g, "%27") + "');"
+          : "";
+
+        return ''
+          + '<article class="dish-card reveal" style="--dish-accent: ' + accent + '">'
+          + '<div class="dish-media" style="' + imageStyle + '" role="img" aria-label="' + escapeHtml(dish.name) + '"></div>'
+          + '<div class="dish-body">'
+          + '<span class="dish-accent" aria-hidden="true"></span>'
+          + '<h3 class="dish-name">' + escapeHtml(dish.name) + '</h3>'
+          + '<p class="dish-description">' + escapeHtml(dish.description) + '</p>'
+          + '</div>'
+          + '</article>';
+      }).join("");
+    }
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replace(/&/g, "\x26amp;")
+        .replace(/</g, "\x26lt;")
+        .replace(/>/g, "\x26gt;")
+        .replace(/"/g, "\x26quot;")
+        .replace(/'/g, "\x26#039;");
+    }
+
+    const MENU_IMAGE_BASE = "assets/images/menu/";
+
+    function slugifyAssetName(value) {
+      return normalizeKey(value)
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "") || "phong-nha";
+    }
+
+    function getMenuAssetPath(parts) {
+      return MENU_IMAGE_BASE + parts.map((part) => slugifyAssetName(part)).join("_") + ".webp";
+    }
+
+    function getMenuTypeFolder(menuType) {
+      return menuType === "lunch_menu" ? "lunch-menu" : "main-menu";
+    }
+
+    function getCategoryImage(menuType, category) {
+      return getMenuAssetPath([getMenuTypeFolder(menuType), "category", category]);
+    }
+
+    function getItemImage(item) {
+      if (item.image) {
+        return getMenuAssetPath([getMenuTypeFolder(item.menu_type), item.category, item.image.replace(/\.webp$/i, "")]);
+      }
+      return getMenuAssetPath([getMenuTypeFolder(item.menu_type), item.category, item.name]);
+    }
+
+    function parsePrice(value) {
+      const cleaned = String(value || "")
+        .replace(/\s/g, "")
+        .replace("€", "")
+        .replace(",", ".")
+        .replace(/[^0-9.]/g, "");
+      const number = Number.parseFloat(cleaned);
+      return Number.isFinite(number) ? number : 0;
+    }
+
+    function formatPrice(value) {
+      return value.toFixed(2).replace(".", ",") + " €";
+    }
+
+    function getCartQuantity(itemId) {
+      const existing = menuState.cart.find((cartItem) => cartItem.id === itemId);
+      return existing ? existing.quantity : 0;
+    }
+
+    function getCartTotal() {
+      return menuState.cart.reduce((sum, cartItem) => {
+        const item = findMenuItemById(cartItem.id);
+        return item ? sum + parsePrice(item.price) * cartItem.quantity : sum;
+      }, 0);
+    }
+
+    function openMobileCart() {
+      if (!orderCard || !cartBackdrop) {
+        return;
+      }
+      orderCard.classList.add("is-open");
+      orderCard.setAttribute("aria-modal", "true");
+      orderCard.setAttribute("aria-hidden", "false");
+      cartBackdrop.classList.add("is-open");
+      if (openCartSheet) {
+        openCartSheet.classList.add("is-hidden");
+      }
+      if (closeCartSheet) {
+        closeCartSheet.focus();
+      }
+    }
+
+    function closeMobileCart() {
+      if (!orderCard || !cartBackdrop) {
+        return;
+      }
+      orderCard.classList.remove("is-open");
+      orderCard.setAttribute("aria-modal", "false");
+      orderCard.setAttribute("aria-hidden", "true");
+      cartBackdrop.classList.remove("is-open");
+      if (openCartSheet) {
+        openCartSheet.classList.remove("is-hidden");
+        openCartSheet.focus();
+      }
+    }
+
+    function updateCategoryMode() {
+      if (!menuPanel || !menuCategoryShell || !menuSection) {
+        return;
+      }
+      const sectionTop = menuSection.getBoundingClientRect().top;
+      const shellTop = menuCategoryShell.getBoundingClientRect().top;
+      const stickyTop = window.matchMedia("(max-width: 760px)").matches ? 72 : 82;
+      const shouldCompact = sectionTop < -60 && shellTop <= stickyTop + 1;
+      menuCategoryShell.classList.toggle("is-stuck", shouldCompact);
+      menuPanel.classList.toggle("has-scrolled-menu", shouldCompact);
+    }
+
+    function getVisibleMenuItems() {
+      const query = normalizeKey(menuState.query);
+      return menuData[menuState.activeType].filter((item) => {
+        if (menuState.category && item.category !== menuState.category) {
+          return false;
+        }
+
+        if (!query) {
+          return true;
+        }
+
+        const haystack = normalizeKey([
+          item.name,
+          item.description,
+          item.price,
+          item.category,
+          item.allergens.join(" ")
+        ].join(" "));
+        return haystack.includes(query);
+      });
+    }
+
+    function renderCategoryFilter() {
+      if (!menuCategoryFilter) {
+        return;
+      }
+
+      const categories = [...new Set(menuData[menuState.activeType]
+        .map((item) => item.category)
+        .filter(Boolean))]
+        .sort((a, b) => a.localeCompare(b, "sk"));
+
+      if (menuState.category && !categories.includes(menuState.category)) {
+        menuState.category = "";
+      }
+
+      const currentValue = menuState.category;
+      menuCategoryFilter.innerHTML = [
+        '<button class="menu-category-chip' + (currentValue ? '' : ' is-active') + '" type="button" data-menu-category="">'
+        + '<span class="category-chip-image"><img src="' + escapeHtml(getMenuAssetPath([getMenuTypeFolder(menuState.activeType), "category", "all"])) + '" alt="" loading="lazy"></span>'
+        + '<span class="category-chip-label">Všetko</span>'
+        + '</button>'
+      ].concat(categories.map((category) => {
+        return '<button class="menu-category-chip' + (category === currentValue ? ' is-active' : '') + '" type="button" data-menu-category="' + escapeHtml(category) + '">'
+          + '<span class="category-chip-image"><img src="' + escapeHtml(getCategoryImage(menuState.activeType, category)) + '" alt="" loading="lazy"></span>'
+          + '<span class="category-chip-label">' + escapeHtml(category) + '</span>'
+          + '</button>';
+      })).join("");
+    }
+
+    function renderDataMenu() {
+      if (!menuList) {
+        return;
+      }
+
+      renderCategoryFilter();
+      const items = getVisibleMenuItems();
+      menuTabs.forEach((tab) => {
+        tab.classList.toggle("is-active", tab.dataset.menuTab === menuState.activeType);
+      });
+      menuSummary.textContent = items.length + " položiek";
+
+      if (!items.length) {
+        menuList.innerHTML = '<div class="menu-empty">Menu zatiaľ nie je pridané. Pošlite ďalšiu časť menu a doplním ju do aktuálneho dátového zoznamu.</div>';
+        renderCart();
+        return;
+      }
+
+      menuList.innerHTML = items.map((item) => {
+        const allergens = item.allergens.length
+          ? item.allergens.map((allergen) => '<span class="menu-pill">' + escapeHtml(allergen) + '</span>').join("")
+          : '<span class="menu-pill menu-placeholder">Bez alergénov</span>';
+        const category = item.category
+          ? '<span class="menu-pill">' + escapeHtml(item.category) + '</span>'
+          : '<span class="menu-pill menu-placeholder">Bez kategórie</span>';
+        const description = item.description
+          ? escapeHtml(item.description)
+          : '<span class="menu-placeholder">Popis bude doplnený.</span>';
+        const size = item.size
+          ? '<span class="menu-pill">' + escapeHtml(item.size) + '</span>'
+          : '';
+        const quantity = getCartQuantity(item.id);
+        const image = '<div class="menu-item-image"><img src="' + escapeHtml(getItemImage(item)) + '" alt="' + escapeHtml(item.name) + '" loading="lazy"></div>';
+        const buttonText = quantity ? 'Pridané (' + quantity + ')' : 'Pridať do košíka';
+
+        return ''
+          + '<article class="menu-item">'
+          + image
+          + '<div class="menu-item-top">'
+          + '<h3>' + escapeHtml(item.name) + '</h3>'
+          + '<span class="menu-price">' + escapeHtml(item.price) + '</span>'
+          + '</div>'
+          + '<p class="menu-description">' + description + '</p>'
+          + '<div class="menu-meta">' + category + size + '</div>'
+          + '<div class="menu-meta">' + allergens + '</div>'
+          + '<div class="menu-card-footer">'
+          + '<button class="button button-dark' + (quantity ? ' is-added' : '') + '" type="button" data-add-menu-item="' + escapeHtml(item.id) + '">' + buttonText + '</button>'
+          + '</div>'
+          + '</article>';
+      }).join("");
+
+      renderCart();
+    }
+
+    function findMenuItemById(id) {
+      return [...menuData.main_menu, ...menuData.lunch_menu].find((item) => item.id === id);
+    }
+
+    function openOrderModal(itemId) {
+      const item = findMenuItemById(itemId);
+      if (!item) {
+        return;
+      }
+
+      menuState.pendingItemId = itemId;
+      orderModalTitle.textContent = item.name;
+      orderModalText.textContent = item.price ? item.price + " · " + item.description : item.description;
+      orderModal.classList.add("is-open");
+      orderModal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeModal() {
+      menuState.pendingItemId = null;
+      orderModal.classList.remove("is-open");
+      orderModal.setAttribute("aria-hidden", "true");
+    }
+
+    function addToCart(itemId) {
+      const item = findMenuItemById(itemId);
+      if (!item) {
+        return;
+      }
+
+      const existing = menuState.cart.find((cartItem) => cartItem.id === itemId);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        menuState.cart.push({ id: itemId, quantity: 1 });
+      }
+      renderCart();
+      renderDataMenu();
+      if (orderError) {
+        orderError.textContent = "";
+      }
+    }
+
+    function updateCartItem(itemId, delta) {
+      const existing = menuState.cart.find((cartItem) => cartItem.id === itemId);
+      if (!existing) {
+        return;
+      }
+
+      existing.quantity += delta;
+      menuState.cart = menuState.cart.filter((cartItem) => cartItem.quantity > 0);
+      renderCart();
+      renderDataMenu();
+    }
+
+    function renderCart() {
+      if (!cartList) {
+        return;
+      }
+
+      if (!menuState.cart.length) {
+        cartList.innerHTML = '<div class="cart-empty">Zatiaľ nemáte vybrané žiadne jedlo. Vyberte si z menu a pridajte položky do objednávky.</div>';
+        if (cartTotal) {
+          cartTotal.innerHTML = '<span>Spolu</span><strong>0,00 €</strong>';
+        }
+        if (cartToolbarCount) {
+          cartToolbarCount.textContent = "0";
+        }
+        if (openCartSheet) {
+          openCartSheet.setAttribute("aria-label", "Otvoriť objednávku, 0 položiek");
+        }
+        return;
+      }
+
+      cartList.innerHTML = menuState.cart.map((cartItem) => {
+        const item = findMenuItemById(cartItem.id);
+        if (!item) {
+          return "";
+        }
+
+        return ''
+          + '<div class="cart-row">'
+          + '<div><strong>' + escapeHtml(item.name) + '</strong><br><span>' + cartItem.quantity + ' × ' + escapeHtml(item.price) + '</span></div>'
+          + '<div class="cart-actions">'
+          + '<button type="button" data-cart-minus="' + escapeHtml(item.id) + '" aria-label="Znížiť počet ' + escapeHtml(item.name) + '">−</button>'
+          + '<span>' + cartItem.quantity + '</span>'
+          + '<button type="button" data-cart-plus="' + escapeHtml(item.id) + '" aria-label="Zvýšiť počet ' + escapeHtml(item.name) + '">+</button>'
+          + '</div>'
+          + '</div>';
+      }).join("");
+
+      const total = getCartTotal();
+      if (cartTotal) {
+        cartTotal.innerHTML = '<span>Spolu</span><strong>' + formatPrice(total) + '</strong>';
+      }
+      if (openCartSheet) {
+        openCartSheet.setAttribute("aria-label", "Otvoriť objednávku, " + menuState.cart.length + " položiek, " + formatPrice(total));
+      }
+      if (cartToolbarCount) {
+        cartToolbarCount.textContent = String(menuState.cart.reduce((sum, cartItem) => sum + cartItem.quantity, 0));
+      }
+    }
+
+    function buildWhatsAppMessage() {
+      const lines = [
+        "Phong Nha",
+        "Dobrý deň, chcem si objednať:"
+      ];
+      menuState.cart.forEach((cartItem) => {
+        const item = findMenuItemById(cartItem.id);
+        if (item) {
+          lines.push(cartItem.quantity + "x " + item.name + (item.price ? " - " + item.price : ""));
+        }
+      });
+      lines.push("Spolu: " + formatPrice(getCartTotal()));
+      if (orderNote && orderNote.value.trim()) {
+        lines.push("Poznámka: " + orderNote.value.trim());
+      }
+      return lines.join("\n");
+    }
+
+    function pageAt(index) {
+      return menuPages[Math.max(0, Math.min(menuPages.length - 1, index))];
+    }
+
+    function setImage(imageElement, page) {
+      imageElement.src = page.image;
+      imageElement.alt = page.title;
+    }
+
+    function renderBook() {
+      setImage(menuPageImage, pageAt(currentIndex));
+      pageCount.textContent = "Strana " + (currentIndex + 1) + " / " + menuPages.length;
+      prevPage.disabled = currentIndex === 0;
+      nextPage.disabled = currentIndex === menuPages.length - 1;
+      prevPage.setAttribute("aria-disabled", String(prevPage.disabled));
+      nextPage.setAttribute("aria-disabled", String(nextPage.disabled));
+    }
+
+    function turnTo(targetIndex, direction) {
+      return;
+      if (targetIndex < 0 || targetIndex >= menuPages.length || targetIndex === currentIndex) {
+        return;
+      }
+
+      currentIndex = targetIndex;
+      renderBook();
+    }
+
+    if (prevPage && nextPage && bookClick) {
+      prevPage.addEventListener("click", () => turnTo(currentIndex - 1, "prev"));
+      nextPage.addEventListener("click", () => turnTo(currentIndex + 1, "next"));
+      bookClick.addEventListener("click", () => {
+        if (ignoreNextClick) {
+          ignoreNextClick = false;
+          return;
+        }
+        turnTo(currentIndex + 1, "next");
+      });
+      bookClick.addEventListener("touchstart", (event) => {
+        touchStartX = event.changedTouches[0].clientX;
+        touchStartY = event.changedTouches[0].clientY;
+      }, { passive: true });
+      bookClick.addEventListener("touchend", (event) => {
+        const touchEndX = event.changedTouches[0].clientX;
+        const touchEndY = event.changedTouches[0].clientY;
+        const deltaX = touchEndX - touchStartX;
+        const deltaY = touchEndY - touchStartY;
+
+        if (Math.abs(deltaX) > 46 && Math.abs(deltaX) > Math.abs(deltaY)) {
+          ignoreNextClick = true;
+          if (deltaX < 0) {
+            turnTo(currentIndex + 1, "next");
+          } else {
+            turnTo(currentIndex - 1, "prev");
+          }
+        }
+      }, { passive: true });
+    }
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight") {
+        turnTo(currentIndex + 1, "next");
+      }
+      if (event.key === "ArrowLeft") {
+        turnTo(currentIndex - 1, "prev");
+      }
+    });
+    menuTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        menuState.activeType = tab.dataset.menuTab;
+        menuState.category = "";
+        renderDataMenu();
+      });
+    });
+    menuSearch.addEventListener("input", (event) => {
+      menuState.query = event.target.value;
+      renderDataMenu();
+    });
+    menuCategoryFilter.addEventListener("click", (event) => {
+      const categoryButton = event.target.closest("[data-menu-category]");
+      if (!categoryButton) {
+        return;
+      }
+      menuState.category = categoryButton.dataset.menuCategory;
+      renderDataMenu();
+    });
+    menuList.addEventListener("click", (event) => {
+      const addButton = event.target.closest("[data-add-menu-item]");
+      if (addButton) {
+        openOrderModal(addButton.dataset.addMenuItem);
+      }
+    });
+    menuList.addEventListener("error", (event) => {
+      const image = event.target.closest(".menu-item-image img");
+      if (!image) {
+        return;
+      }
+      const imageWrap = image.closest(".menu-item-image");
+      imageWrap.innerHTML = '<span>Phong Nha</span>';
+    }, true);
+    menuCategoryFilter.addEventListener("error", (event) => {
+      const image = event.target.closest(".category-chip-image img");
+      if (!image) {
+        return;
+      }
+      const imageWrap = image.closest(".category-chip-image");
+      imageWrap.innerHTML = "";
+    }, true);
+    cartList.addEventListener("click", (event) => {
+      const minusButton = event.target.closest("[data-cart-minus]");
+      const plusButton = event.target.closest("[data-cart-plus]");
+      if (minusButton) {
+        updateCartItem(minusButton.dataset.cartMinus, -1);
+      }
+      if (plusButton) {
+        updateCartItem(plusButton.dataset.cartPlus, 1);
+      }
+    });
+    confirmAddToCart.addEventListener("click", () => {
+      if (menuState.pendingItemId) {
+        addToCart(menuState.pendingItemId);
+      }
+      closeModal();
+    });
+    closeOrderModal.addEventListener("click", closeModal);
+    orderModal.addEventListener("click", (event) => {
+      if (event.target === orderModal) {
+        closeModal();
+      }
+    });
+    sendWhatsAppOrder.addEventListener("click", () => {
+      if (!menuState.cart.length) {
+        if (orderError) {
+          orderError.textContent = "Najprv pridajte jedlo do objednávky.";
+        }
+        return;
+      }
+      if (orderError) {
+        orderError.textContent = "";
+      }
+      const message = encodeURIComponent(buildWhatsAppMessage());
+      window.open("https://wa.me/421948919999?text=" + message, "_blank", "noopener");
+    });
+    if (openCartSheet) {
+      openCartSheet.addEventListener("click", openMobileCart);
+    }
+    if (closeCartSheet) {
+      closeCartSheet.addEventListener("click", closeMobileCart);
+    }
+    if (cartBackdrop) {
+      cartBackdrop.addEventListener("click", closeMobileCart);
+    }
+    window.addEventListener("scroll", updateCategoryMode, { passive: true });
+    window.addEventListener("resize", updateCategoryMode);
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeMobileCart();
+        closeModal();
+      }
+    });
+    window.PhongNhaMenu = {
+      menuData,
+      upsertMenuItems,
+      renderDataMenu
+    };
+    menuState.activeType = "lunch_menu";
+    renderFeaturedDishes();
+    upsertMenuItems(mainMenuItems);
+    upsertMenuItems(lunchMenuItems);
+    renderDataMenu();
+    updateCategoryMode();
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16 });
+
+    document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+  </script>
+</body>
+
+</html>
