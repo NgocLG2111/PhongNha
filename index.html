@@ -308,12 +308,35 @@
     }
 
     .hero-logo {
-      width: min(430px, 72vw);
+      position: absolute;
+      left: 50%;
+      top: 48%;
+      z-index: 0;
+      width: min(96vw, 1400px);
       height: auto;
+      max-height: 92vh;
       object-fit: contain;
       display: block;
-      margin: 0 0 38px;
-      filter: drop-shadow(0 24px 34px rgba(49, 29, 18, 0.14));
+      margin: 0;
+      pointer-events: none;
+      transform: translate(-50%, -50%) scale(2.15);
+      transform-origin: center center;
+      opacity: 0.96;
+      filter: drop-shadow(0 20px 30px rgba(49, 29, 18, 0.1));
+      animation: heroLogoIntro 3.9s cubic-bezier(0.22, 0.78, 0.18, 1) both;
+      will-change: transform, opacity, filter;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: heroCopyIn 980ms cubic-bezier(0.22, 0.78, 0.18, 1) 1.7s both;
+    }
+
+    .hero-copy .hero-actions {
+      animation: heroCopyIn 980ms cubic-bezier(0.22, 0.78, 0.18, 1) 1.84s both;
     }
 
     h1 {
@@ -344,6 +367,7 @@
 
     .hero-panel {
       position: relative;
+      z-index: 2;
       min-height: 560px;
       border-radius: 34px;
       overflow: hidden;
@@ -1630,6 +1654,42 @@
       }
     }
 
+    @keyframes heroLogoIntro {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(3.05);
+        filter: drop-shadow(0 44px 64px rgba(49, 29, 18, 0.18));
+      }
+
+      16% {
+        opacity: 0.98;
+        transform: translate(-50%, -50%) scale(1.02);
+      }
+
+      38% {
+        opacity: 0.92;
+        transform: translate(-50%, -50%) scale(0.995);
+      }
+
+      100% {
+        opacity: 0.1;
+        transform: translate(calc(-50% + 11vw), calc(-50% + 4.5vh)) scale(0.84);
+        filter: drop-shadow(0 8px 18px rgba(49, 29, 18, 0.06));
+      }
+    }
+
+    @keyframes heroCopyIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html {
         scroll-behavior: auto;
@@ -1641,6 +1701,27 @@
         animation-duration: 1ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 1ms !important;
+      }
+
+      .hero-logo {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: min(520px, 82vw);
+        transform: none;
+        opacity: 0.14;
+        filter: none;
+        animation: none;
+      }
+
+      .hero-copy {
+        opacity: 1;
+        transform: none;
+        animation: none;
+      }
+
+      .hero-copy .hero-actions {
+        animation: none;
       }
     }
 
@@ -1911,7 +1992,9 @@
       }
 
       .hero-logo {
-        margin-bottom: 28px;
+        width: min(132vw, 560px);
+        top: 50%;
+        transform: translate(-50%, -50%) scale(1.32);
       }
 
       .hero-panel {
@@ -1985,9 +2068,7 @@
   <header class="site-header" aria-label="Hlavná navigácia">
     <div class="nav-shell">
       <a class="brand" href="#domov" aria-label="Phong Nha domov">
-        <img
-          src="https://statics.pancake.vn/web-media-262/cc/53/9b/b9/540c34d1d5d05e9d3cf6e19db9958236f5faf2cbfc550c7e321750d8-w:1983-h:793-l:154093-t:image/jpeg.jpg"
-          alt="Logo Phong Nha">
+        <img src="./logo1.png" alt="Logo Phong Nha">
       </a>
       <nav class="nav-links" aria-label="Navigácia stránky">
         <a href="#domov">Domov</a>
@@ -2003,7 +2084,7 @@
     <!-- HERO -->
     <section class="hero" id="domov">
       <div class="container hero-grid">
-        <div class="reveal">
+        <div class="hero-copy reveal">
           <img class="hero-logo"
             src="https://statics.pancake.vn/web-media-262/cc/53/9b/b9/540c34d1d5d05e9d3cf6e19db9958236f5faf2cbfc550c7e321750d8-w:1983-h:793-l:154093-t:image/jpeg.jpg"
             alt="Phong Nha">
@@ -2205,13 +2286,12 @@
       <small>© 2026 Phong Nha. Všetky práva vyhradené.</small>
     </div>
   </footer>
-
   <script>
     const featuredDishes = [
       {
         name: "Bun Bo Nam Bo",
         description: "Tradičné vietnamské jedlo s ryžovými rezancami pripravované na studeno, čerstvá zelenina, hovädzie mäso, cibuľka, podávané s rybacou omáčkou.",
-        image: "https://monngonmoingay.com/wp-content/uploads/2018/08/bun-bo-gio-heo-500-min.jpg"
+        image: "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2024/4/18/h1-17134251431111922441630-31-0-567-1024-crop-17134252274051385677850.png"
       },
       {
         name: "Chrumkavá kačica",
