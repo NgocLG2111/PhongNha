@@ -62,7 +62,7 @@
       --color-surface-base: var(--paper-soft);
       --color-surface-strong: var(--red);
       --color-surface-muted: rgba(255, 244, 221, 0.08);
-      --radius-xs: 5px;
+      --radius-xs: 20px;
       --radius-sm: 30px;
       --radius-md: 100px;
       --shadow-1: 0 4px 18px rgba(0, 0, 0, 0.2);
@@ -237,6 +237,13 @@
       font-weight: 800;
     }
 
+    .nav-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex: 0 0 auto;
+    }
+
     .nav-links a {
       position: relative;
       padding: 8px 0;
@@ -371,9 +378,13 @@
       min-height: 560px;
       border-radius: 34px;
       overflow: hidden;
-      background:
-        linear-gradient(180deg, rgba(13, 13, 12, 0.05), rgba(13, 13, 12, 0.42)),
-        url("https://images.unsplash.com/photo-1511910849309-0dffb8785146?auto=format&fit=crop&w=1100&q=82") center/cover;
+      background-color: #171411;
+      background-image:
+        linear-gradient(180deg, rgba(13, 13, 12, 0.04), rgba(13, 13, 12, 0.34)),
+        url("./hero_img.jpg");
+      background-repeat: no-repeat, no-repeat;
+      background-position: center, center 18%;
+      background-size: cover, contain;
       box-shadow: var(--shadow);
       isolation: isolate;
     }
@@ -383,9 +394,9 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(30deg, rgba(13, 13, 12, 0.78), transparent 58%),
-        radial-gradient(circle at 72% 16%, rgba(217, 173, 85, 0.26), transparent 34%),
-        radial-gradient(circle at 20% 70%, rgba(255, 79, 175, 0.16), transparent 32%);
+        linear-gradient(30deg, rgba(13, 13, 12, 0.56), transparent 58%),
+        radial-gradient(circle at 72% 16%, rgba(217, 173, 85, 0.14), transparent 34%),
+        radial-gradient(circle at 20% 70%, rgba(255, 79, 175, 0.1), transparent 32%);
       z-index: -1;
     }
 
@@ -771,7 +782,7 @@
 
     .menu-toolbar {
       display: grid;
-      grid-template-columns: auto minmax(260px, 1fr) auto auto;
+      grid-template-columns: auto minmax(260px, 1fr) auto;
       gap: var(--space-6) var(--space-7);
       align-items: center;
       padding: var(--space-8);
@@ -1768,7 +1779,7 @@
       }
 
       .menu-toolbar {
-        grid-template-columns: auto minmax(0, 1fr) auto auto;
+        grid-template-columns: auto minmax(0, 1fr) auto;
         gap: var(--space-5);
       }
 
@@ -1918,11 +1929,6 @@
         grid-column: 1;
       }
 
-      .menu-cart-button {
-        grid-column: 2;
-        padding-inline: var(--space-6);
-      }
-
       .menu-category-chips,
       .menu-summary {
         grid-column: 1 / -1;
@@ -1977,6 +1983,10 @@
         padding: 8px 8px 8px 12px;
       }
 
+      .nav-actions {
+        gap: 8px;
+      }
+
       .brand img {
         width: 104px;
       }
@@ -2000,6 +2010,11 @@
       .hero-panel {
         min-height: 360px;
         border-radius: 24px;
+        background-position: center, center 22%;
+      }
+
+      .hero-card {
+        display: none;
       }
 
       .hero-card {
@@ -2076,7 +2091,13 @@
         <a href="#hodiny">Otváracie hodiny</a>
         <a href="#kontakt">Kontakt</a>
       </nav>
-      <a class="button button-primary" href="tel:0948919999" aria-label="Zavolať do reštaurácie Phong Nha">Zavolať</a>
+      <div class="nav-actions">
+        <a class="button button-primary" href="tel:0948919999" aria-label="Zavolať do reštaurácie Phong Nha">Zavolať</a>
+        <button class="menu-cart-button" id="openCartSheet" type="button" aria-label="Otvoriť objednávku">
+          <span class="cart-bag-icon" aria-hidden="true"></span>
+          <span id="cartToolbarCount">0</span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -2141,10 +2162,6 @@
             </div>
             <input class="menu-search" id="menuSearch" type="search" placeholder="Hľadať v menu"
               aria-label="Hľadať v menu">
-            <button class="menu-cart-button" id="openCartSheet" type="button" aria-label="Otvoriť objednávku">
-              <span class="cart-bag-icon" aria-hidden="true"></span>
-              <span id="cartToolbarCount">0</span>
-            </button>
             <div class="menu-summary" id="menuSummary">0 položiek</div>
           </div>
           <div class="menu-category-shell" id="menuCategoryShell">
@@ -2277,12 +2294,12 @@
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <div class="footer-brand">
+      <!-- <div class="footer-brand">
         <img
           src="https://statics.pancake.vn/web-media-262/cc/53/9b/b9/540c34d1d5d05e9d3cf6e19db9958236f5faf2cbfc550c7e321750d8-w:1983-h:793-l:154093-t:image/jpeg.jpg"
           alt="Malé logo Phong Nha">
         <span>Phong Nha</span>
-      </div>
+      </div> -->
       <small>© 2026 Phong Nha. Všetky práva vyhradené.</small>
     </div>
   </footer>
@@ -2291,7 +2308,7 @@
       {
         name: "Bun Bo Nam Bo",
         description: "Tradičné vietnamské jedlo s ryžovými rezancami pripravované na studeno, čerstvá zelenina, hovädzie mäso, cibuľka, podávané s rybacou omáčkou.",
-        image: "https://images2.thanhnien.vn/zoom/1200_630/528068263637045248/2024/4/18/h1-17134251431111922441630-31-0-567-1024-crop-17134252274051385677850.png"
+        image: "./bunbonambo.png"
       },
       {
         name: "Chrumkavá kačica",
