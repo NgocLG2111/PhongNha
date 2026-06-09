@@ -242,6 +242,8 @@
       align-items: center;
       gap: 10px;
       flex: 0 0 auto;
+      position: relative;
+      z-index: 2;
     }
 
     .nav-links a {
@@ -875,6 +877,8 @@
       font-size: var(--font-size-md);
       font-weight: 950;
       transition: transform var(--motion-duration-instant) ease, background var(--motion-duration-instant) ease;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .menu-cart-button:hover {
@@ -888,6 +892,10 @@
     .menu-cart-button:focus-visible {
       outline: 3px solid rgba(217, 173, 85, 0.72);
       outline-offset: 3px;
+    }
+
+    .menu-cart-button.is-hidden {
+      display: none;
     }
 
     .cart-bag-icon {
@@ -1878,12 +1886,13 @@
       }
 
       .menu-content {
-        padding: 12px;
+        padding: 26px 12px 12px;
       }
 
       .menu-category-shell {
-        top: 72px;
-        padding: var(--space-6);
+        top: 62px;
+        padding: 12px;
+        margin-bottom: 14px;
       }
 
       .menu-category-shell.is-stuck {
@@ -1935,7 +1944,9 @@
       }
 
       .menu-category-shell {
-        padding-inline: var(--space-5);
+        top: 58px;
+        padding-inline: 10px;
+        margin-bottom: 16px;
       }
 
       .menu-category-chip {
@@ -1975,26 +1986,39 @@
       }
 
       .site-header {
-        padding: 8px 0;
+        padding: 6px 0;
       }
 
       .nav-shell {
-        width: calc(100% - 16px);
-        padding: 8px 8px 8px 12px;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: 10px;
+        width: calc(100% - 12px);
+        padding: 6px 6px 6px 10px;
       }
 
       .nav-actions {
-        gap: 8px;
+        gap: 6px;
+        margin-left: auto;
       }
 
       .brand img {
-        width: 104px;
+        width: 82px;
       }
 
       .site-header .button {
-        min-height: 42px;
-        padding: 10px 15px;
-        font-size: 0.9rem;
+        min-height: 38px;
+        padding: 8px 12px;
+        font-size: 0.84rem;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .menu-cart-button {
+        min-height: 38px;
+        min-width: 38px;
+        padding: 8px 12px;
+        font-size: 0.84rem;
       }
 
       h1 {
