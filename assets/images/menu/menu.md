@@ -168,7 +168,7 @@ main-menu_poke-bowls_tuna-bowls.webp
 main-menu_polievky_bambi.webp
 main-menu_polievky_hanojsky-vyvar.webp
 main-menu_polievky_miso.webp
-main-menu_polievky_ostrokysla-polievka.webp
+main-menu_polievky_c.webp
 main-menu_polievky_rybacia-polievka.webp
 main-menu_polievky_tom-yum.webp
 main-menu_predjedla_jarne-zavitky.webp
