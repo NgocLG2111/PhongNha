@@ -1095,6 +1095,13 @@
       background: rgba(255, 244, 221, 0.38);
     }
 
+    .menu-item-image.is-logo-fallback img {
+      width: 74%;
+      object-fit: contain;
+      padding: 18px;
+      background: rgba(255, 244, 221, 0.18);
+    }
+
     .menu-item-image span {
       color: rgba(255, 244, 221, 0.82);
       font-weight: 900;
@@ -2407,6 +2414,7 @@
         category: item.category || "",
         allergens: Array.isArray(item.allergens) ? item.allergens : [],
         image: item.image || "",
+        imageKey: item.imageKey || resolveMenuImageKey(item),
         size: item.size || item.weight || item.volume || item.quantity || "",
         menu_type: menuType
       };
@@ -2826,6 +2834,8 @@
     }
 
     const MENU_IMAGE_BASE = "assets/images/menu/";
+    const MENU_CATEGORY_IMAGE_BASE = MENU_IMAGE_BASE + "categories/";
+    const MENU_IMAGE_FALLBACK = "./logo1.png";
 
     function slugifyAssetName(value) {
       return normalizeKey(value)
@@ -2833,23 +2843,130 @@
         .replace(/^-+|-+$/g, "") || "phong-nha";
     }
 
-    function getMenuAssetPath(parts) {
-      return MENU_IMAGE_BASE + parts.map((part) => slugifyAssetName(part)).join("_") + ".webp";
+    function getProteinImageKey(value, suffix) {
+      const key = normalizeKey(value);
+      if (key.includes("hovadzie")) return "beef" + suffix;
+      if (key.includes("kuracie")) return "chicken" + suffix;
+      if (key.includes("krevet")) return "shrimp" + suffix;
+      if (key.includes("kacac")) return "duck" + suffix;
+      if (key.includes("tofu") || key.includes("vege")) return "tofu" + suffix;
+      return "";
     }
 
-    function getMenuTypeFolder(menuType) {
-      return menuType === "lunch_menu" ? "lunch-menu" : "main-menu";
+    function getBowlsImageKey(value) {
+      const key = normalizeKey(value);
+      if (!key.includes("poke-bowls") && !key.includes("poke-bolws")) {
+        return "";
+      }
+      if (key.includes("losos flambovany")) return "flambed-salmon-bowls";
+      if ((key.includes("vyprazane") || key.includes("vybrazane")) && key.includes("kuracie")) return "fried-chicken-bowls";
+      if ((key.includes("vyprazane") || key.includes("vybrazane")) && key.includes("krevety")) return "fried-shrimp-bowls";
+      if (key.includes("kuracie bowls") || key.includes("kuracie prsia") || key.includes("kuracie")) return "chicken-bowls";
+      if (key.includes("hovadzie")) return "beef-bowls";
+      if (key.includes("krevety")) return "shrimp-bowls";
+      if (key.includes("losos")) return "salmon-bowls";
+      if (key.includes("tuna")) return "tuna-bowls";
+      if (key.includes("tofu")) return "tofu-bowls";
+      return "poke-bowls";
     }
 
-    function getCategoryImage(menuType, category) {
-      return getMenuAssetPath([getMenuTypeFolder(menuType), "category", category]);
+    function resolveMenuImageKey(item) {
+      const id = normalizeKey(item.id || "");
+      const category = normalizeKey(item.category || "");
+      const name = normalizeKey(item.name || "");
+      const matchText = [id, category, name].join(" ");
+      const bowlsImageKey = getBowlsImageKey(matchText);
+
+      if (bowlsImageKey) return bowlsImageKey;
+      if (matchText.includes("ostrokysla-polievka")) return "hot-sour-soup";
+      if (matchText.includes("tom-yum")) return "tom-yum";
+      if (matchText.includes("hanoj-vyvar") || matchText.includes("hanojsky-vyvar")) return "hanoi-broth";
+      if (matchText.includes("rybacia-polievka") || id.endsWith("-rybacia")) return "fish-soup";
+      if (matchText.includes("miso")) return "miso-soup";
+      if (id.endsWith("-pho") || matchText.includes(" pho ")) return "pho";
+      if (matchText.includes("ramen")) return "ramen";
+      if (matchText.includes("jarne-zavitky")) return "spring-rolls";
+      if (matchText.includes("gyoza")) return "gyoza";
+      if (matchText.includes("vegetarian-rolls")) return "vegetarian-rolls";
+      if (matchText.includes("salmon-teriyaki")) return "salmon-teriyaki";
+      if (matchText.includes("ebi-tempura-menu")) return "ebi-tempura-menu";
+      if (matchText.includes("ebi-tempura")) return "ebi-tempura";
+      if (matchText.includes("jazminova-ryza")) return "jasmine-rice";
+      if (matchText.includes("opekana-ryza")) return "fried-rice";
+      if (matchText.includes("hranolky")) return "fries";
+      if (matchText.includes("prilohy-rezance")) return "side-noodles";
+      if (matchText.includes("kuraci-salat")) return "chicken-salad";
+      if (matchText.includes("deli-salmon")) return "salmon-salad";
+      if (matchText.includes("avokadovy-sen")) return "avocado-dream";
+      if (matchText.includes("wakame")) return "wakame-salad";
+      if (matchText.includes("bun-bo-nam-bo")) return "bun-bo-nam-bo";
+      if (matchText.includes("thajske-kari")) return "thai-curry";
+      if (matchText.includes("kung-pao")) return "kung-pao";
+      if (matchText.includes("kura-v-tempur")) return "chicken-tempura";
+      if (matchText.includes("vyprazany-syr")) return "fried-cheese";
+      if (matchText.includes("hovadzie-maso-na-stave") || matchText.includes("hovadzie-na-stave")) return "beef-in-sauce";
+      if (matchText.includes("hot-wok")) return "hot-wok";
+      if (matchText.includes("chicken-grill")) return "chicken-grill";
+      if (matchText.includes("medove-kusky")) return "honey-chicken";
+      if (matchText.includes("kuracie-kusky")) return "chicken-bites";
+      if (matchText.includes("chrumkave-kura")) return "crispy-chicken";
+      if (matchText.includes("chrumkava-kacica") || matchText.includes("chrumkave-kacica") || id.endsWith("-kacica") || matchText.includes(" hlavne-jedla kacica")) return "crispy-duck";
+
+      if (matchText.includes("rizoto")) {
+        return getProteinImageKey(matchText, "-risotto") || "risotto";
+      }
+
+      if (matchText.includes("udon-rezance")) {
+        return getProteinImageKey(matchText, "-udon") || "udon-noodles";
+      }
+
+      if (matchText.includes("ryzove-rezance") || matchText.includes("psenicne-rezance") || matchText.includes(" rezance ")) {
+        return getProteinImageKey(matchText, "-noodles") || "noodles";
+      }
+
+      if (matchText.includes("losos-menu")) return "salmon-menu";
+      if (matchText.includes("ebi-menu")) return "shrimp-menu";
+      if (matchText.includes("sakura-menu")) return "sakura-menu";
+      if (matchText.includes("surimi-menu")) return "surimi-menu";
+      if (matchText.includes("maki-set")) return "maki-set";
+      if (matchText.includes("mix-menu")) return "mix-menu";
+      if (matchText.includes("mix-maki")) return "mix-maki";
+      if (matchText.includes("veggie-set")) return "veggie-set";
+      if (matchText.includes("salmon-set-lososovy-set") || matchText.includes("salmon-set")) return "salmon-set";
+      if (matchText.includes("tuna-set")) return "tuna-set";
+      if (matchText.includes("shrimp-set")) return "shrimp-set";
+      if (matchText.includes("mix-set")) return "mix-set";
+      if (matchText.includes("sushi-combo")) return "sushi-combo";
+
+      if (id.includes("main-futomaki-") || id.includes("main-specia-roll-")) {
+        return slugifyAssetName(String(item.name || "").replace(/:$/, ""));
+      }
+
+      if (id.includes("main-sushi-rolls-tuna")) return "tuna-roll";
+      if (id.includes("main-sushi-rolls-ebi")) return "ebi-roll";
+      if (id.includes("main-sushi-rolls-surimi")) return "surimi-roll";
+      if (id.includes("main-sushi-rolls-vegi")) return "vegi-roll";
+      if (id.includes("main-sushi-rolls-mix-roll")) return "mix-roll";
+
+      return slugifyAssetName(displayText(item.name || "phong-nha"));
     }
 
     function getItemImage(item) {
-      if (item.image) {
-        return getMenuAssetPath([getMenuTypeFolder(item.menu_type), item.category, item.image.replace(/\.webp$/i, "")]);
+      if (!item || !item.imageKey) {
+        return MENU_IMAGE_FALLBACK;
       }
-      return getMenuAssetPath([getMenuTypeFolder(item.menu_type), item.category, item.name]);
+      return MENU_IMAGE_BASE + slugifyAssetName(item.imageKey) + ".webp";
+    }
+
+    function getCategoryImageKey(category) {
+      if (!category) {
+        return "all";
+      }
+      return slugifyAssetName(displayText(category));
+    }
+
+    function getCategoryImage(category) {
+      return MENU_CATEGORY_IMAGE_BASE + getCategoryImageKey(category) + ".webp";
     }
 
     function parsePrice(value) {
@@ -2957,6 +3074,30 @@
       }
 
       const currentValue = menuState.category;
+
+      menuCategoryFilter.innerHTML = [
+        '<button class="menu-category-chip' + (currentValue ? '' : ' is-active') + '" type="button" data-menu-category="">'
+        + '<span class="category-chip-image"><img src="' + escapeHtml(getCategoryImage("")) + '" alt="" loading="lazy"></span>'
+        + '<span class="category-chip-label">VÅ¡etko</span>'
+        + '</button>'
+      ].concat(categories.map((category) => {
+        return '<button class="menu-category-chip' + (category === currentValue ? ' is-active' : '') + '" type="button" data-menu-category="' + escapeHtml(category) + '">'
+          + '<span class="category-chip-image"><img src="' + escapeHtml(getCategoryImage(category)) + '" alt="" loading="lazy"></span>'
+          + '<span class="category-chip-label">' + safeDisplay(category) + '</span>'
+          + '</button>';
+      })).join("");
+      return;
+
+      menuCategoryFilter.innerHTML = [
+        '<button class="menu-category-chip' + (currentValue ? '' : ' is-active') + '" type="button" data-menu-category="">'
+        + '<span class="category-chip-label">VÅ¡etko</span>'
+        + '</button>'
+      ].concat(categories.map((category) => {
+        return '<button class="menu-category-chip' + (category === currentValue ? ' is-active' : '') + '" type="button" data-menu-category="' + escapeHtml(category) + '">'
+          + '<span class="category-chip-label">' + safeDisplay(category) + '</span>'
+          + '</button>';
+      })).join("");
+      return;
 
       menuCategoryFilter.innerHTML = [
         '<button class="menu-category-chip' + (currentValue ? '' : ' is-active') + '" type="button" data-menu-category="">'
@@ -3263,16 +3404,26 @@
       if (!image) {
         return;
       }
+      if (image.dataset.fallbackApplied === "true") {
+        return;
+      }
+      image.dataset.fallbackApplied = "true";
+      image.src = MENU_IMAGE_FALLBACK;
       const imageWrap = image.closest(".menu-item-image");
-      imageWrap.innerHTML = '<span>Phong Nha</span>';
+      if (imageWrap) {
+        imageWrap.classList.add("is-logo-fallback");
+      }
     }, true);
     menuCategoryFilter.addEventListener("error", (event) => {
       const image = event.target.closest(".category-chip-image img");
       if (!image) {
         return;
       }
-      const imageWrap = image.closest(".category-chip-image");
-      imageWrap.innerHTML = "";
+      if (image.dataset.fallbackApplied === "true") {
+        return;
+      }
+      image.dataset.fallbackApplied = "true";
+      image.src = MENU_IMAGE_FALLBACK;
     }, true);
     cartList.addEventListener("click", (event) => {
       const minusButton = event.target.closest("[data-cart-minus]");
