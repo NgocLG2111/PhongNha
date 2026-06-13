@@ -2946,7 +2946,7 @@
     const MENU_IMAGE_BASE = "assets/images/menu/";
     const MAIN_MENU_LOGO_IMAGE = "./logo1.png";
     const CHICKEN_GRILL_IMAGE = "./assets/images/menu/custom-chicken-grill.png";
-    const SET_MENU_IMAGE = "./assets/images/menu/custom-set-menu.png";
+    const MIX_SET_IMAGE = "./assets/images/menu/custom-set-menu.png";
     const MAIN_MENU_KEEP_IMAGE_INDEXES = new Set([
       1, 6, 7, 10, 12,
       17, 18, 19, 20,
@@ -2960,6 +2960,61 @@
     ]);
     const MAIN_MENU_HIDDEN_INDEX = 75;
     const MAIN_MENU_REUSE_IMAGE_INDEX = 76;
+    const LUNCH_MENU_SYNC_LOGO_ITEM_IDS = new Set([
+      "lunch-pondelok-polievky-bambi",
+      "lunch-pondelok-polievky-ostrokysla-polievka",
+      "lunch-pondelok-sushi-veggie-set",
+      "lunch-pondelok-teple-jedla-chrumkave-kacica",
+      "lunch-utorok-polievky-ostrokysla-polievka",
+      "lunch-utorok-polievky-tom-yum",
+      "lunch-utorok-sushi-veggie-set",
+      "lunch-streda-polievky-hanojsky-vyvar",
+      "lunch-streda-polievky-ostrokysla-polievka",
+      "lunch-streda-sushi-veggie-set",
+      "lunch-stvrtok-sushi-ebi-tempura-menu",
+      "lunch-stvrtok-sushi-veggie-set",
+      "lunch-stvrtok-polievky-ostrokysla-polievka",
+      "lunch-piatok-polievky-ostrokysla-polievka",
+      "lunch-piatok-sushi-veggie-set",
+      "lunch-piatok-teple-jedla-chrumkava-kacica",
+      "lunch-tyzdenna-ponuka-chrumkave-kura"
+    ]);
+    const MAIN_MENU_LOGO_HIDDEN_ITEMS_REPORT = [
+      { index: 2, name: "Jarné závitky", id: "main-predjedla-jarne-zavitky" },
+      { index: 3, name: "Vegetarian Rolls", id: "main-predjedla-vegetarian-rolls" },
+      { index: 4, name: "Ostrokyslá polievka", id: "main-polievky-ostrokysla-polievka" },
+      { index: 5, name: "Tom Yum", id: "main-polievky-tom-yum" },
+      { index: 8, name: "Hanojský vývar", id: "main-polievky-hanojsky-vyvar" },
+      { index: 9, name: "Bambi", id: "main-polievky-bambi" },
+      { index: 11, name: "Ebi Tempura", id: "main-ryby-morske-jedla-ebi-tempura" },
+      { index: 13, name: "Krevetové", id: "main-rezance-krevetove" },
+      { index: 14, name: "Kuracie", id: "main-rezance-kuracie" },
+      { index: 15, name: "Vege", id: "main-rezance-vege" },
+      { index: 16, name: "Jazmínová ryža", id: "main-prilohy-jazminova-ryza" },
+      { index: 21, name: "Deli Salmon", id: "main-salaty-deli-salmon" },
+      { index: 25, name: "Tuna Set:", id: "main-sushi-set-tuna-set" },
+      { index: 26, name: "Shrimp Set:", id: "main-sushi-set-shrimp-set" },
+      { index: 27, name: "Veggie Set:", id: "main-sushi-set-veggie-set" },
+      { index: 34, name: "Vyprážaný syr", id: "main-hlavne-jedla-vyprazany-syr" },
+      { index: 36, name: "Hovädzie mäso na šťave", id: "main-hlavne-jedla-hovadzie-maso-na-stave" },
+      { index: 37, name: "Chrumkavé kura", id: "main-hlavne-jedla-chrumkave-kura" },
+      { index: 38, name: "Kačica", id: "main-hlavne-jedla-kacica" },
+      { index: 40, name: "Chicken Grill", id: "main-hlavne-jedla-chicken-grill" },
+      { index: 41, name: "Kuracie Kúsky", id: "main-hlavne-jedla-kuracie-kusky" },
+      { index: 43, name: "Hokai:", id: "main-futomaki-hokai" },
+      { index: 44, name: "Hiroshima:", id: "main-futomaki-hiroshima" },
+      { index: 45, name: "Tokyo:", id: "main-futomaki-tokyo" },
+      { index: 46, name: "Osaka:", id: "main-futomaki-osaka" },
+      { index: 47, name: "Milky Way:", id: "main-futomaki-milky-way" },
+      { index: 48, name: "Cali:", id: "main-futomaki-cali" },
+      { index: 49, name: "Sunshine:", id: "main-futomaki-sunshine" },
+      { index: 62, name: "Tuna roll T1", id: "main-sushi-rolls-tuna-t1" },
+      { index: 65, name: "Ebi roll E2", id: "main-sushi-rolls-ebi-e2" },
+      { index: 71, name: "Mix roll", id: "main-sushi-rolls-mix-roll" },
+      { index: 74, name: "Tuna Bowls", id: "main-poke-bowls-tuna" },
+      { index: 76, name: "Kuracie vybrazane Bowls", id: "main-poke-bowls-kuracie-vybrazane" },
+      { index: 77, name: "Krevety Bowls", id: "main-poke-bowls-krevety" }
+    ];
 
     function slugifyAssetName(value) {
       return normalizeKey(value)
@@ -2986,6 +3041,10 @@
       return mainMenuItems.findIndex((rawItem) => rawItem.id === item.id) + 1;
     }
 
+    function isLunchMenuSyncLogoItem(item) {
+      return item && item.menu_type === "lunch_menu" && LUNCH_MENU_SYNC_LOGO_ITEM_IDS.has(item.id);
+    }
+
     function getDefaultItemImage(item) {
       if (item.image) {
         return getMenuAssetPath([getMenuTypeFolder(item.menu_type), item.category, item.image.replace(/\.webp$/i, "")]);
@@ -2997,17 +3056,13 @@
       return normalizeMenuNameForMatch(item && item.name).includes("chicken grill");
     }
 
-    function isSetMenuItem(item) {
-      return /\b(set|menu)\b/i.test(String(item && item.name || ""));
+    function isMixSetItem(item) {
+      return item && item.id === "main-sushi-set-mix-set";
     }
 
     function getItemImage(item) {
-      if (isChickenGrillItem(item)) {
-        return CHICKEN_GRILL_IMAGE;
-      }
-
-      if (isSetMenuItem(item)) {
-        return SET_MENU_IMAGE;
+      if (isLunchMenuSyncLogoItem(item)) {
+        return MAIN_MENU_LOGO_IMAGE;
       }
 
       if (item.menu_type === "main_menu") {
@@ -3020,6 +3075,14 @@
         if (!MAIN_MENU_KEEP_IMAGE_INDEXES.has(originalIndex)) {
           return MAIN_MENU_LOGO_IMAGE;
         }
+      }
+
+      if (isChickenGrillItem(item)) {
+        return CHICKEN_GRILL_IMAGE;
+      }
+
+      if (isMixSetItem(item)) {
+        return MIX_SET_IMAGE;
       }
 
       return getDefaultItemImage(item);
@@ -3548,6 +3611,8 @@
       menuData,
       upsertMenuItems,
       renderDataMenu,
+      mainMenuLogoHiddenItemsReport: MAIN_MENU_LOGO_HIDDEN_ITEMS_REPORT,
+      lunchMenuSyncLogoItemIds: [...LUNCH_MENU_SYNC_LOGO_ITEM_IDS],
       lunchMenuNameSyncReport: LUNCH_MENU_NAME_SYNC_REPORT,
       lunchMenuNameNeedReview: LUNCH_MENU_NAME_NEED_REVIEW
     };
